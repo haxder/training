@@ -1,0 +1,70 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Movies List Page</title>
+<style>
+.moviesTable {
+	border-collapse: collapse;
+	border: 1px solid #000000;
+}
+
+.moviesTableHeader {
+	text-align: center;
+	background: none repeat scroll 0 0 #B5B5B5;
+	border-bottom: 1px solid #000000;
+	padding: 2px;
+}
+
+.moviesTableOddRow {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFFF;
+}
+
+.moviesTableEvenRow {
+	text-align: center;
+	background: none repeat scroll 0 0 #D3D3D3;
+}
+</style>
+</head>
+<f:view beforePhase="#{movieController.init}">
+	<body>
+		<h2>
+			This is <b>Movies List</b> Page
+		</h2>
+		<h:dataTable value="#{movieController.movies}" var="mv"
+			styleClass="moviesTable" headerClass="moviesTableHeader"
+			rowClasses="moviesTableOddRow,moviesTableEvenRow">
+			<h:column>
+				<f:facet name="header">MOVIE_ID</f:facet>
+			#{mv.movieId}
+		</h:column>
+			<h:column>
+				<f:facet name="header">TITLE</f:facet>
+			#{mv.title}
+		</h:column>
+			<h:column>
+				<f:facet name="header">RELEASE_DATE</f:facet>
+			#{mv.releaseDate}
+		</h:column>
+			<h:column>
+				<f:facet name="header">GENRE</f:facet>
+			#{mv.genre}
+		</h:column>
+			<h:column>
+				<f:facet name="header">PRICE</f:facet>
+			#{mv.price}
+		</h:column>
+		</h:dataTable>
+		<h:form>
+			<h3>Using JSF outcome</h3>
+			<h:commandButton action="#{movieController.selectAllMovies}"
+				value="Go To Movies List" />
+		</h:form>
+	</body>
+</f:view>
+</html>
+
