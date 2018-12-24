@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-abstract class DatabaseManager {
+public class DatabaseManager {
 	public static Connection connect = null;
 	public static ResultSet resutls = null;
 	public static CallableStatement stm = null;

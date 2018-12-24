@@ -7,7 +7,6 @@ import java.util.List;
 
 import oracle.jdbc.OracleTypes;
 import thinhtv.training.models.Movie;
-
 public class MoviesDataManager extends DatabaseManager {
 	
 	/**
