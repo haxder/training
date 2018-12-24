@@ -11,6 +11,7 @@
 .moviesTable {
 	border-collapse: collapse;
 	border: 1px solid #000000;
+	width: 100%
 }
 
 .moviesTableHeader {
@@ -36,37 +37,38 @@
 		<h2>
 			This is <b>Movies List</b> Page
 		</h2>
-		<p:dataTable value="#{movieController.movies}" var="mv"
+		<h:form>
+		<h:dataTable value="#{movieController.movies}" var="mv"
 			styleClass="moviesTable" headerClass="moviesTableHeader"
 			rowClasses="moviesTableOddRow,moviesTableEvenRow">
-			<p:column>
+			<h:column>
 				<f:facet name="header">MOVIE_ID</f:facet>
 				#{mv.movieId}
-			</p:column>
-			<p:column>
+			</h:column>
+			<h:column>
 				<f:facet name="header">TITLE</f:facet>
-				#{mv.title}
-			</p:column>
-			<p:column>
+				<h:inputText value="#{mv.title}"/>
+			</h:column>
+			<h:column>
 				<f:facet name="header">RELEASE_DATE</f:facet>
-				#{mv.releaseDate}
-			</p:column>
-			<p:column>
+				<h:inputText value="#{mv.releaseDate}"/>
+			</h:column>
+			<h:column>
 				<f:facet name="header">GENRE</f:facet>
-				#{mv.genre}
-			</p:column>
-			<p:column>
+				<h:inputText value="#{mv.genre}"/>
+			</h:column>
+			<h:column>
 				<f:facet name="header">PRICE</f:facet>
-				#{mv.price}
-			</p:column>
-			<p:column>
-				<p:button></p:button>
-			</p:column>
-		</p:dataTable>
+				<h:inputText value="#{mv.price}"/>
+			</h:column>
+			<h:column>
+				<h:button value="#{mv.editStatus == true ? 'Done' : 'Edit'}"/>
+			</h:column>
+		</h:dataTable>
+		</h:form>
 		<h:form>
-			<h3>Using JSF outcome</h3>
 			<h:commandButton action="#{movieController.selectAllMovies}"
-				value="Go To Movies List" />
+				value="get all movies" />
 		</h:form>
 	</body>
 </f:view>

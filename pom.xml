@@ -47,11 +47,6 @@
 			<version>2.1</version>
 		</dependency>
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
@@ -63,6 +58,20 @@
 			<version>12.2.0.1</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/src/webapp/WEB-INF/lib/ojdbc8.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/src/webapp/WEB-INF/lib/commons-logging-1.2.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.0.Final</version>
 		</dependency>
 	</dependencies>
 </project>
