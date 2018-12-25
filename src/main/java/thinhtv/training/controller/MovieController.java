@@ -26,15 +26,15 @@ public class MovieController implements Serializable{
 	@PostConstruct
 	public void init() {
 		if ((FacesContext.getCurrentInstance().getCurrentPhaseId() == PhaseId.RENDER_RESPONSE)) {
-			//MoviesDataManager manager = new MoviesDataManager();
-			//movies = manager.selectAllMovies();
-			
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			movies = session.createQuery("From MOVIES", Movie.class).list();
 			session.close();
 		}
 	}
 	
+	/** 
+	 * lấy data theo sql thuần 
+	 */
 	public String selectAllMovies() throws SQLException, ClassNotFoundException {
 
 		MoviesDataManager manager = new MoviesDataManager();
