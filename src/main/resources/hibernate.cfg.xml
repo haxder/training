@@ -12,7 +12,8 @@
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
+        <!-- <property name="hibernate.archive.autodetection">class,hbm</property>
         
-        <mapping class="thinhtv.training.models.Movie"/>
+        <mapping class="thinhtv.training.models.Movie"/> -->
     </session-factory>
 </hibernate-configuration>
