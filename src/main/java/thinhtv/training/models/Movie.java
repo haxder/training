@@ -18,22 +18,22 @@ public class Movie implements Serializable {
 
 	@Id
 	@Column(name = "MOVIE_ID")
-	@Generated (GenerationTime.INSERT)
+	@Generated(GenerationTime.INSERT)
 	/* id auto increment */
 	private Integer movieId;
-	
+
 	@Column(name = "TITLE")
 	private String title;
-	
+
 	@Column(name = "RELEASE_DATE")
 	private String releaseDate;
-	
+
 	@Column(name = "GENRE")
 	private String genre;
-	
+
 	@Column(name = "PRICE")
 	private String price;
-	
+
 	@Column(name = "IMAGE")
 	private String image;
 
