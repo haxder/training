@@ -1,19 +1,107 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html 
-	xmlns = "http://www.w3.org/1999/xhtml"
-	xmlns:f = "http://java.sun.com/jsf/core"
-   	xmlns:h = "http://java.sun.com/jsf/html"
-   	xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 <head>
+<link rel="stylesheet" href="resources/css/jquery.rateyo.min.css" />
+<link rel="stylesheet" href="resources/css/bootstrap.css" />
+<script type="text/javascript" src="resources/scripts/jquery-1.10.2.js" />
+<script type="text/javascript"
+	src="resources/scripts/jquery.rateyo.min.js" />
+<script type="text/javascript" src="resources/scripts/bootstrap.js" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
 <title>this is Index Page</title>
 </head>
-<h:body>
-<h2>this is <b>Index</b> page</h2>
-<h:form>
-   <h3>Using JSF outcome</h3>
-		<h:commandButton action = "MOVIES" value = "Go To Movies List"/>
-	</h:form>
-</h:body>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">MVC Movies</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/Movies">Home</a></li>
+					<li><a href="/Movies/About">About</a></li>
+					<li><a href="/Movies/Movies">Movies</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container body-content">
+
+
+		<h2>Index</h2>
+
+		<p>
+			<a href="/MoviesDBC/Create">Create New</a>
+		</p>
+
+		<h:form>
+			<f:event listener="#{movieController.init}" type="preRenderComponent"></f:event>
+			<h:dataTable border="1" value="#{movieController.movies}" var="mv">
+				<h:column id="column1">
+					<f:facet name="header">
+						<h:outputText value="Genre"/>
+					</f:facet>
+					<h:outputText value="#{mv.genre}" />
+				</h:column>
+				<h:column id="column2">
+					<f:facet name="header">
+						<h:outputText value="Title" />
+					</f:facet>
+					<h:outputText value="#{mv.title}" />
+				</h:column>
+				<h:column id="column3">
+					<f:facet name="header">
+						<h:outputText value="Release Date" />
+					</f:facet>
+					<h:outputText value="#{mv.releaseDate}" />
+				</h:column>
+				<h:column id="column4">
+					<f:facet name="header">
+						<h:outputText value="Price" />
+					</f:facet>
+					<h:outputText value="#{mv.price}" />
+				</h:column>
+				<h:column id="column5">
+					<f:facet name="header">
+						<h:outputText value="Rate" />
+					</f:facet>
+					<h:outputText value="" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+
+		<hr />
+		<footer>
+		<p>&copy; 2018 - Training ASP.Net with VB.NET by ThinhTV</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript">
+            $(function () {
+                $("td[id*='rate']").each(function (i, el) {
+                    $("#" + el.id).rateYo({
+                        rating: $("#" + el.id).attr("value"),
+                        numStars: 5,
+                        precision: 2,
+                        minValue: 1,
+                        maxValue: 5,
+                        readOnly: true,
+                        halfStar: true
+                    });
+                });
+            });
+        </script>
+
+</body>
 </html>
