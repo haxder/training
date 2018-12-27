@@ -4,17 +4,15 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-<head>
-<link rel="stylesheet" href="resources/css/jquery.rateyo.min.css" />
-<link rel="stylesheet" href="resources/css/bootstrap.css" />
-<script type="text/javascript" src="resources/scripts/jquery-1.10.2.js" />
-<script type="text/javascript"
-	src="resources/scripts/jquery.rateyo.min.js" />
-<script type="text/javascript" src="resources/scripts/bootstrap.js" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h:head>
+	<link rel="stylesheet" href="resources/css/bootstrap.css" />
+	<script type="text/javascript" src="resources/scripts/jquery-1.10.2.js" />
+	<script type="text/javascript" src="resources/scripts/jquery-ui.js" />
+	<script type="text/javascript" src="resources/scripts/bootstrap.js" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<title>this is Index Page</title>
-</head>
+	<title>this is Index Page</title>
+</h:head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -40,68 +38,71 @@
 
 
 		<h2>Index</h2>
-
-		<p>
-			<a href="/MoviesDBC/Create">Create New</a>
-		</p>
-
 		<h:form>
-			<f:event listener="#{movieController.init}" type="preRenderComponent"></f:event>
-			<h:dataTable border="1" value="#{movieController.movies}" var="mv">
-				<h:column id="column1">
-					<f:facet name="header">
-						<h:outputText value="Genre"/>
-					</f:facet>
-					<h:outputText value="#{mv.genre}" />
-				</h:column>
-				<h:column id="column2">
-					<f:facet name="header">
-						<h:outputText value="Title" />
-					</f:facet>
-					<h:outputText value="#{mv.title}" />
-				</h:column>
-				<h:column id="column3">
-					<f:facet name="header">
-						<h:outputText value="Release Date" />
-					</f:facet>
-					<h:outputText value="#{mv.releaseDate}" />
-				</h:column>
-				<h:column id="column4">
-					<f:facet name="header">
-						<h:outputText value="Price" />
-					</f:facet>
-					<h:outputText value="#{mv.price}" />
-				</h:column>
-				<h:column id="column5">
-					<f:facet name="header">
-						<h:outputText value="Rate" />
-					</f:facet>
-					<h:outputText value="" />
-				</h:column>
-			</h:dataTable>
-		</h:form>
+			<f:event listener="#{movieController.init}" type="preRenderComponent" />
+			<div>
+				<p:galleria value="#{movieController.movies}" var="mv"
+					panelWidth="500" panelHeight="313" showCaption="true">
+					<p:graphicImage value="resources/image/#{mv.image}"
+						alt="Image Description for #{mv.image}" title="#{mv.image}" />
+				</p:galleria>
+			</div>
+			<p:fieldset legend="Movies">
+				<p:dataTable border="1" value="#{movieController.movies}" var="mv" paginator="true" rows="10" paginatorTemplate=
+                             "{RowsPerPageDropdown} {FirstPageLink}
+                             {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="1,2,3">
+					<p:column id="column1" headerText="Genre">
+						<h:outputText value="#{mv.genre}" />
+					</p:column>
+					<p:column id="column2" headerText="Title">
+						<h:outputText value="#{mv.title}" />
+						<br />
+						<p:graphicImage value="resources/image/#{mv.image}" />
+					</p:column>
+					<p:column id="column3" headerText="Release Date">
+						<h:outputText value="#{mv.releaseDate}" />
+					</p:column>
+					<p:column id="column4" headerText="Price">
+						<h:outputText value="#{mv.price}" />
+					</p:column>
+					<p:column id="column5" headerText="Rate">
+						<p:rating value="#{mv.rate}" readonly="true" />
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
 
+			<p:dataList value="#{movieController.movies}" var="mv"
+				type="unordered" itemType="none" paginator="true" rows="2" style="margin-top: 50px;">
+				<f:facet name="header">Movies</f:facet>
+				<div style="overflow: hidden; margin: 10px 0 0 10px;">
+					<table>
+						<tr>
+							<td><a href="/phim/minh-lan-truyen-7678.html"> <p:graphicImage
+										value="resources/image/#{mv.image}" title="#{mv.image}" /></a></td>
+							<td>
+								<div style="margin: 25px;">
+									<h:outputText value="#{mv.title}" style="font-weight: 700;" />
+									<br />
+									<h:outputText value="#{mv.genre}" />
+									<br />
+									<h:outputText value="#{mv.releaseDate}" />
+									<br />
+									<h:outputText value="#{mv.price}" />
+									<br />
+									<p:rating value="#{mv.rate}" readonly="true" />
+								</div>
+							</td>
+						</tr>
+					</table>
+
+				</div>
+			</p:dataList>
+		</h:form>
 		<hr />
 		<footer>
 		<p>&copy; 2018 - Training ASP.Net with VB.NET by ThinhTV</p>
 		</footer>
 	</div>
-
-	<script type="text/javascript">
-            $(function () {
-                $("td[id*='rate']").each(function (i, el) {
-                    $("#" + el.id).rateYo({
-                        rating: $("#" + el.id).attr("value"),
-                        numStars: 5,
-                        precision: 2,
-                        minValue: 1,
-                        maxValue: 5,
-                        readOnly: true,
-                        halfStar: true
-                    });
-                });
-            });
-        </script>
-
 </body>
 </html>

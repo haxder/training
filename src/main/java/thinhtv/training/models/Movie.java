@@ -36,6 +36,9 @@ public class Movie implements Serializable {
 
 	@Column(name = "IMAGE")
 	private String image;
+	
+	@Column(name = "RATE")
+	private int rate;
 
 	public Movie() {
 	}
@@ -94,5 +97,12 @@ public class Movie implements Serializable {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public int getRate() {
+		return rate;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 }
