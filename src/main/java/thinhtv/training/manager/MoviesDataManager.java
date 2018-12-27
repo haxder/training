@@ -3,6 +3,7 @@ package thinhtv.training.manager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import oracle.jdbc.OracleTypes;
@@ -25,7 +26,7 @@ public class MoviesDataManager extends DatabaseManager {
 			while (rset.next()) {
 				Integer movieId = rset.getInt("MOVIE_ID");
 				String title = rset.getString("TITLE");
-				String releaseDate = rset.getString("RELEASE_DATE");
+				Date releaseDate = rset.getDate("RELEASE_DATE");
 				String genre = rset.getString("GENRE");
 				String price = rset.getString("PRICE");
 				Movie mv = new Movie(movieId, title, releaseDate, genre, price);

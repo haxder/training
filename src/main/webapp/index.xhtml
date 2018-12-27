@@ -10,6 +10,8 @@
 	<script type="text/javascript" src="resources/scripts/jquery-ui.js" />
 	<script type="text/javascript" src="resources/scripts/bootstrap.js" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- html source code -->
+	<link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
 
 	<title>this is Index Page</title>
 </h:head>
@@ -48,41 +50,16 @@
 				</p:galleria>
 			</div> -->
 			<p:fieldset legend="Movies">
-				<p:dataTable border="1" value="#{movieController.movies}" var="mv" paginator="true" rows="10" paginatorTemplate=
-                             "{RowsPerPageDropdown} {FirstPageLink}
+				<p:dataTable border="1" value="#{movieController.movies}" var="mv"
+					paginator="true" rows="1"
+					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}
                              {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="1,2,3" lazy="true">
-					<p:column id="column1" headerText="Genre">
-						<h:outputText value="#{mv.genre}" />
-					</p:column>
-					<p:column id="column2" headerText="Title">
-						<h:outputText value="#{mv.title}" />
-						<br />
-						<p:graphicImage value="resources/image/#{mv.image}" />
-					</p:column>
-					<p:column id="column3" headerText="Release Date">
-						<h:outputText value="#{mv.releaseDate}" />
-					</p:column>
-					<p:column id="column4" headerText="Price">
-						<h:outputText value="#{mv.price}" />
-					</p:column>
-					<p:column id="column5" headerText="Rate">
-						<p:rating value="#{mv.rate}" readonly="true" />
-					</p:column>
-				</p:dataTable>
-			</p:fieldset>
-
-			<p:dataList value="#{movieController.movies}" var="mv"
-				type="unordered" itemType="none" paginator="true" rows="2" style="margin-top: 50px;" paginatorTemplate=
-                             "{RowsPerPageDropdown} {FirstPageLink}
-                             {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="1,2,3" lazy="false">
-				<f:facet name="header">Movies</f:facet>
-				<div style="overflow: hidden; margin: 10px 0 0 10px;">
-					<table>
+					rowsPerPageTemplate="1,2,3" lazy="true">
+					<p:column id="column1" >
+						<table>
 						<tr>
-							<td><a href="/phim/minh-lan-truyen-7678.html"> <p:graphicImage
-										value="resources/image/#{mv.image}" title="#{mv.image}" /></a></td>
+							<td><p:graphicImage value="resources/image/#{mv.image}"
+									title="#{mv.image}" /></td>
 							<td>
 								<div style="margin: 25px;">
 									<h:outputText value="#{mv.title}" style="font-weight: 700;" />
@@ -94,6 +71,43 @@
 									<h:outputText value="#{mv.price}" />
 									<br />
 									<p:rating value="#{mv.rate}" readonly="true" />
+									<p:link outcome="MOVIEDETAIL" value="Edit">
+										<f:param name="movieId" value="#{mv.movieId}"></f:param>
+									</p:link>
+								</div>
+							</td>
+						</tr>
+					</table>
+					</p:column>
+				</p:dataTable>
+			</p:fieldset>
+
+			<p:dataList value="#{movieController.movies}" var="mv"
+				type="unordered" itemType="none" paginator="true" rows="2"
+				style="margin-top: 50px;"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}
+                             {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="1,2,3" lazy="true">
+				<f:facet name="header">Movies</f:facet>
+				<div style="overflow: hidden; margin: 10px 0 0 10px;">
+					<table style="border: none">
+						<tr>
+							<td><p:graphicImage value="resources/image/#{mv.image}"
+									title="#{mv.image}" /></td>
+							<td>
+								<div style="margin: 25px;">
+									<h:outputText value="#{mv.title}" style="font-weight: 700;" />
+									<br />
+									<h:outputText value="#{mv.genre}" />
+									<br />
+									<h:outputText value="#{mv.releaseDate}" />
+									<br />
+									<h:outputText value="#{mv.price}" />
+									<br />
+									<p:rating value="#{mv.rate}" readonly="true" />
+									<h:link outcome="MOVIEDETAIL" value="Edit">
+										<f:param name="selectedMovieID" value="#{mv.movieId}"></f:param>
+									</h:link>
 								</div>
 							</td>
 						</tr>

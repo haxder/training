@@ -4,17 +4,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<p:head>
-	<link rel="stylesheet" href="resources/css/jquery.rateyo.min.css" />
-	<link rel="stylesheet" href="resources/css/bootstrap.css" />
-	<script type="text/javascript" src="resources/scripts/jquery-1.10.2.js" />
-	<script type="text/javascript"
-		src="resources/scripts/jquery.rateyo.min.js" />
-	<script type="text/javascript" src="resources/scripts/bootstrap.js" />
+<h:head>
+	<link rel="stylesheet" href="../css/bootstrap.css" />
+	<script type="text/javascript" src="../scripts/jquery-1.10.2.js" />
+	<script type="text/javascript" src="../scripts/jquery-ui.js" />
+	<script type="text/javascript" src="../scripts/bootstrap.js" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
+	<!-- html source code -->
+	<link type="text/css" rel="stylesheet"
+		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
 	<title>this is movies details</title>
-</p:head>
+</h:head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -35,62 +35,100 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="container body-content">
-
-
 		<h2>Details</h2>
-
-		<div>
-			<h4>Movie</h4>
-			<hr />
-			<dl class="dl-horizontal">
-				<dt>Genre</dt>
-
-				<dd>Cổ Trang - Thần Thoại</dd>
-
-				<dt>Title</dt>
-
-				<dd>Tương Dạ</dd>
-
-				<dt>Release Date</dt>
-
-				<dd>2017-12-05</dd>
-				<dt>Price</dt>
-
-				<dd>$10.00</dd>
-				<dt>Rate</dt>
-				<dd id="rate" value="4"></dd>
-			</dl>
-		</div>
-		<p>
-			<a href="/MoviesDBC/Edit/44">Edit</a> | <a href="/">Back to List</a>
-		</p>
-
-
+		<h:form>
+			<f:event listener="#{movieController.editInit}"
+				type="preRenderComponent" />
+			<p:outputPanel rendered="#{movieController.selectedMovie != null}" id="movieDetails">
+				<div>
+					<h4>Movie</h4>
+					<hr />
+					<p:outputPanel rendered="#{movieController.editMovie == 'false'}">
+						<table>
+							<tr>
+								<td><p:graphicImage
+										value="../image/#{movieController.selectedMovie.image}"
+										alt="#{movieController.selectedMovie.image}" /></td>
+								<td>
+									<dl class="dl-horizontal">
+										<dt>Genre</dt>
+										<dd>
+											<h:outputText value="#{movieController.selectedMovie.genre}" />
+										</dd>
+										<dt>Title</dt>
+										<dd>
+											<h:outputText value="#{movieController.selectedMovie.title}" />
+										</dd>
+										<dt>Release Date</dt>
+										<dd>
+											<h:outputText value="#{movieController.selectedMovie.releaseDate}" >
+												<f:convertDateTime pattern="yyyy-MM-dd" />
+											</h:outputText>
+										</dd>
+										<dt>Price</dt>
+										<dd>
+											<h:outputText value="#{movieController.selectedMovie.price}" />
+										</dd>
+										<dt>Rate</dt>
+										<dd>
+											<p:rating value="#{movieController.selectedMovie.rate}"
+												readonly="true" />
+										</dd>
+										<dt/>
+										<dd><p:commandButton value="#{movieController.editMovie ? 'Done' : 'Edit'}" update="movieDetails" action="#{movieController.changeStatus}"/></dd>
+									</dl>
+								</td>
+							</tr>
+						</table>
+					</p:outputPanel>
+					<p:outputPanel rendered="#{movieController.editMovie}">
+						<table>
+							<tr>
+								<td><p:graphicImage
+										value="../image/#{movieController.selectedMovie.image}"
+										alt="#{movieController.selectedMovie.image}" /></td>
+								<td>
+									<dl class="dl-horizontal">
+										<dt>Genre</dt>
+										<dd>
+											<p:inputText value="#{movieController.selectedMovie.genre}" />
+										</dd>
+										<dt>Title</dt>
+										<dd>
+											<p:inputText value="#{movieController.selectedMovie.title}" />
+										</dd>
+										<dt>Release Date</dt>
+										<dd>
+											<p:calendar
+												value="#{movieController.selectedMovie.releaseDate}" pattern="yyyy-MM-dd" navigator="true"/>
+										</dd>
+										<dt>Price</dt>
+										<dd>
+											<p:inputText value="#{movieController.selectedMovie.price}" />
+										</dd>
+										<dt>Rate</dt>
+										<dd>
+											<p:rating value="#{movieController.selectedMovie.rate}" />
+										</dd>
+										<dt/>
+										<dd><p:commandButton value="#{movieController.editMovie ? 'Done' : 'Edit'}" update="movieDetails" action="#{movieController.changeStatus}"/></dd>
+									</dl>
+								</td>
+							</tr>
+						</table>
+					</p:outputPanel>
+				</div>
+				<p>
+					<a href="/MoviesDBC/Edit/44">Edit</a> | <a href="/">Back to
+						List</a>
+				</p>
+			</p:outputPanel>
+		</h:form>
 		<hr />
 		<footer>
 		<p>&copy; 2018 - Training ASP.Net with VB.NET by ThinhTV</p>
 		</footer>
 	</div>
-
-	<script type="text/javascript">
-        $(function () {
-            $("#rate").rateYo({
-                rating: $("#rate").attr("value"),
-                numStars: 5,
-                precision: 2,
-                minValue: 1,
-                maxValue: 5,
-                readOnly: true,
-                halfStar: true,
-                onChange: function (rating) {
-                    console.log(rating);
-                } 
-            });
-        });
-    </script>
-
 </body>
-
 </html>

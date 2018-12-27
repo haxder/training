@@ -1,10 +1,13 @@
 package thinhtv.training.models;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Generated;
@@ -26,7 +29,8 @@ public class Movie implements Serializable {
 	private String title;
 
 	@Column(name = "RELEASE_DATE")
-	private String releaseDate;
+	@Temporal(TemporalType.DATE)
+	private Date releaseDate;
 
 	@Column(name = "GENRE")
 	private String genre;
@@ -43,7 +47,7 @@ public class Movie implements Serializable {
 	public Movie() {
 	}
 
-	public Movie(Integer movieId, String title, String releaseDate, String genre, String price) {
+	public Movie(Integer movieId, String title, Date releaseDate, String genre, String price) {
 		this.movieId = movieId;
 		this.title = title;
 		this.releaseDate = releaseDate;
@@ -67,11 +71,11 @@ public class Movie implements Serializable {
 		this.title = title;
 	}
 
-	public String getReleaseDate() {
+	public Date getReleaseDate() {
 		return releaseDate;
 	}
 
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
