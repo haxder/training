@@ -12,7 +12,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<!-- html source code -->
 	<link type="text/css" rel="stylesheet"
-		href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
+		href="/training/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
 	<title>this is movies details</title>
 </h:head>
 <body>
@@ -24,11 +24,11 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">MVC Movies</a>
+				<a class="navbar-brand" href="/training">MVC Movies</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="/Movies">Home</a></li>
+					<li><a href="/training">Home</a></li>
 					<li><a href="/Movies/About">About</a></li>
 					<li><a href="/Movies/Movies">Movies</a></li>
 				</ul>
@@ -37,7 +37,7 @@
 	</div>
 	<div class="container body-content">
 		<h2>Details</h2>
-		<h:form>
+		<h:form enctype="multipart/form-data">
 			<f:event listener="#{movieController.editInit}"
 				type="preRenderComponent" />
 			<p:outputPanel rendered="#{movieController.selectedMovie != null}" id="movieDetails">
@@ -47,9 +47,10 @@
 					<p:outputPanel rendered="#{movieController.editMovie == 'false'}">
 						<table>
 							<tr>
-								<td><p:graphicImage
-										value="../image/#{movieController.selectedMovie.image}"
-										alt="#{movieController.selectedMovie.image}" /></td>
+								<td>
+									<p:graphicImage library="image" name="#{movieController.selectedMovie.image}"
+											alt="#{movieController.selectedMovie.image}" />
+								</td>
 								<td>
 									<dl class="dl-horizontal">
 										<dt>Genre</dt>
@@ -76,7 +77,7 @@
 												readonly="true" />
 										</dd>
 										<dt/>
-										<dd><p:commandButton value="#{movieController.editMovie ? 'Done' : 'Edit'}" update="movieDetails" action="#{movieController.changeStatus}"/></dd>
+										<dd><p:commandButton value="Edit" update="movieDetails" action="#{movieController.changeStatus}" ajax="false"/></dd>
 									</dl>
 								</td>
 							</tr>
@@ -85,9 +86,15 @@
 					<p:outputPanel rendered="#{movieController.editMovie}">
 						<table>
 							<tr>
-								<td><p:graphicImage
+								<td>
+									<!-- <p:graphicImage
 										value="../image/#{movieController.selectedMovie.image}"
-										alt="#{movieController.selectedMovie.image}" /></td>
+										alt="#{movieController.selectedMovie.image}" /> --> 
+									<p:graphicImage
+											library="image" name="#{movieController.selectedMovie.image}"
+											alt="#{movieController.selectedMovie.image}" />
+									<h:inputFile value="#{movieController.imgfileUpload}" onchange="previewFile()"/>
+								</td>
 								<td>
 									<dl class="dl-horizontal">
 										<dt>Genre</dt>
@@ -112,7 +119,7 @@
 											<p:rating value="#{movieController.selectedMovie.rate}" />
 										</dd>
 										<dt/>
-										<dd><p:commandButton value="#{movieController.editMovie ? 'Done' : 'Edit'}" update="movieDetails" action="#{movieController.changeStatus}"/></dd>
+										<dd><p:commandButton value="Save" update="movieDetails" action="#{movieController.changeStatus}" ajax="false"/></dd>
 									</dl>
 								</td>
 							</tr>
@@ -131,4 +138,19 @@
 		</footer>
 	</div>
 </body>
+<script>
+        function previewFile() {
+            var preview = document.querySelector('img');
+            var file = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                preview.src = reader.result;
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        };
+</script>
 </html>

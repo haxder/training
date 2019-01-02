@@ -1,13 +1,16 @@
 package thinhtv.training.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.Part;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.primefaces.model.LazyDataModel;
 
 import thinhtv.training.Utils.HibernateUtil;
@@ -26,6 +29,9 @@ public class MovieController implements Serializable {
 	private Movie selectedMovie;
 	private String selectedMovieID;
 	private boolean editMovie;
+	
+	// upload file
+	private Part imgfileUpload;
 
 	/**
 	 * init data movies list view
@@ -47,16 +53,46 @@ public class MovieController implements Serializable {
 			Session ss = HibernateUtil.getSessionFactory().openSession();
 			selectedMovie = ss.createQuery("From MOVIES where MOVIE_ID = :selectId", Movie.class)
 					.setParameter("selectId", selectMVID).getSingleResult();
+			ss.close();
 		} catch (Exception e) {
 			
 		}
 	}
 	
 	/**
-	 * thay ddooir trạng thái button  = ajax
+	 * thay ddooir trạng thái button  = ajax, save data
 	 */
 	public void changeStatus() {
+		if (editMovie) {
+			if(imgfileUpload != null) {
+				saveFile(imgfileUpload);
+				selectedMovie.setImage(imgfileUpload.getSubmittedFileName());
+			}
+			Session ss = HibernateUtil.getSessionFactory().openSession();
+			Transaction tx8 = ss.beginTransaction();
+			ss.saveOrUpdate(selectedMovie);
+			tx8.commit();
+			ss.close();
+		}
 		editMovie = !editMovie;
+	}
+
+	private void saveFile(Part file) {
+		String dirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/image");
+		try {
+			file.write(dirPath + "/" + file.getSubmittedFileName());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public Part getImgfileUpload() {
+		return imgfileUpload;
+	}
+
+	public void setImgfileUpload(Part imgfileUpload) {
+		this.imgfileUpload = imgfileUpload;
 	}
 
 	public LazyDataModel<Movie> getMovies() {

@@ -10,12 +10,9 @@ import thinhtv.training.models.Movie;
 public class MoviesLazyDataModel extends LazyDataModel<Movie> {
 	
 	private static final long serialVersionUID = -4836640077175973670L;
-	
 	private Session session = HibernateUtil.getSessionFactory().openSession();
-	
 	public MoviesLazyDataModel() {
 		Long maxRow = session.createQuery("Select count(*) From MOVIES", Long.class).getSingleResult();
-		
 		// bắt buộc phải khởi tạo được max row trong db! không thì sẽ ko tính được vị trí cần lấy
 		
 		this.setRowCount(maxRow.intValue());

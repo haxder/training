@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="resources/scripts/bootstrap.js" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<!-- html source code -->
-	<link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
+	<link type="text/css" rel="stylesheet" href="/training/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
 
 	<title>this is Index Page</title>
 </h:head>
@@ -24,11 +24,11 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">MVC Movies</a>
+				<a class="navbar-brand" href="/training">MVC Movies</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="/Movies">Home</a></li>
+					<li><a href="/training">Home</a></li>
 					<li><a href="/Movies/About">About</a></li>
 					<li><a href="/Movies/Movies">Movies</a></li>
 				</ul>
@@ -72,7 +72,7 @@
 									<br />
 									<p:rating value="#{mv.rate}" readonly="true" />
 									<p:link outcome="MOVIEDETAIL" value="Edit">
-										<f:param name="movieId" value="#{mv.movieId}"></f:param>
+										<f:param name="selectedMovieID" value="#{mv.movieId}"></f:param>
 									</p:link>
 								</div>
 							</td>
