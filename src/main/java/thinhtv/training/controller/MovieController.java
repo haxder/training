@@ -77,6 +77,23 @@ public class MovieController implements Serializable {
 		editMovie = !editMovie;
 	}
 
+	/**
+	 * xoa doi tuong torng db
+	 * @param mv
+	 */
+	public void delete (Movie mv) {
+		Session ss = HibernateUtil.getSessionFactory().openSession();
+		Transaction ts = ss.getTransaction();
+		ts.begin();
+		ss.delete(mv);
+		ts.commit();
+		movies = new MoviesLazyDataModel();
+	}
+	
+	/**
+	 *  lưu file vào địa chỉ vùng nhớ thực trên server
+	 * @param file
+	 */
 	private void saveFile(Part file) {
 		String dirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/image");
 		try {

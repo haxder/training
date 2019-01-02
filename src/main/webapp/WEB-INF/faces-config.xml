@@ -4,7 +4,7 @@
  <application/>
  
  <lifecycle>
-    <phase-listener>thinhtv.training.JSFCustom.MyPhaseListener</phase-listener>
+    <phase-listener>thinhtv.training.listener.MyPhaseListener</phase-listener>
 </lifecycle>
 
  

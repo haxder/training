@@ -1,4 +1,4 @@
-package thinhtv.training.JSFCustom;
+package thinhtv.training.listener;
 
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;

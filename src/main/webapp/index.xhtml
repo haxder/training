@@ -40,7 +40,7 @@
 
 
 		<h2>Index</h2>
-		<h:form>
+		<h:form id="moviesForm">
 			<f:event listener="#{movieController.init}" type="preRenderComponent" />
 			<!-- <div>
 				<p:galleria value="#{movieController.movies}" var="mv"
@@ -49,7 +49,7 @@
 						alt="Image Description for #{mv.image}" title="#{mv.image}" />
 				</p:galleria>
 			</div> -->
-			<p:fieldset legend="Movies">
+			<!-- <p:fieldset legend="Movies">
 				<p:dataTable border="1" value="#{movieController.movies}" var="mv"
 					paginator="true" rows="1"
 					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}
@@ -81,7 +81,7 @@
 					</p:column>
 				</p:dataTable>
 			</p:fieldset>
-
+ -->
 			<p:dataList value="#{movieController.movies}" var="mv"
 				type="unordered" itemType="none" paginator="true" rows="2"
 				style="margin-top: 50px;"
@@ -108,6 +108,7 @@
 									<h:link outcome="MOVIEDETAIL" value="Edit">
 										<f:param name="selectedMovieID" value="#{mv.movieId}"></f:param>
 									</h:link>
+									<p:commandButton action="#{movieController.delete(mv)}" value="Delete" update="moviesForm" onclick="return confirm('Are you sure you want delete movie?')"/>
 								</div>
 							</td>
 						</tr>
