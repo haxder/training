@@ -9,6 +9,8 @@
   <property name="hibernate.connection.username">training</property>
   <property name="hibernate.default_schema">training</property>
   <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+  <!-- getCurrentSession not create new session -->
+  <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
   <property name="show_sql">true</property>
   <property name="format_sql">true</property>
   <property name="hibernate.connection.pool_size">20</property>
