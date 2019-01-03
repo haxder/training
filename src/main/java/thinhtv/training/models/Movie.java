@@ -12,9 +12,17 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 @Entity(name = "MOVIES")
 @DynamicUpdate(value = true)
+
+@NamedQueries({
+	@NamedQuery(name="GET_TOTALL_MOVIES", query="Select count(1) From MOVIES"),
+	@NamedQuery(name="GET_ALL_MOVIES", query="From MOVIES")
+})
+
 public class Movie implements Serializable {
 
 	private static final long serialVersionUID = 6383578742528861934L;
@@ -43,7 +51,7 @@ public class Movie implements Serializable {
 	
 	@Column(name = "RATE")
 	private int rate;
-
+	
 	public Movie() {
 	}
 

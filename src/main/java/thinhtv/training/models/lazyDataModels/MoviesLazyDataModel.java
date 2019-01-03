@@ -12,7 +12,7 @@ public class MoviesLazyDataModel extends LazyDataModel<Movie> {
 	private static final long serialVersionUID = -4836640077175973670L;
 	private Session session = HibernateUtil.getSessionFactory().openSession();
 	public MoviesLazyDataModel() {
-		Long maxRow = session.createQuery("Select count(*) From MOVIES", Long.class).getSingleResult();
+		Long maxRow = session.createNamedQuery("GET_TOTALL_MOVIES", Long.class).getSingleResult();
 		// bắt buộc phải khởi tạo được max row trong db! không thì sẽ ko tính được vị trí cần lấy
 		
 		this.setRowCount(maxRow.intValue());
@@ -21,7 +21,7 @@ public class MoviesLazyDataModel extends LazyDataModel<Movie> {
 
 	@Override
 	public List<Movie> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-		List<Movie> movies = session.createQuery("From MOVIES", Movie.class)
+		List<Movie> movies = session.createNamedQuery("GET_ALL_MOVIES", Movie.class)
 				.setFirstResult(first)
 				.setMaxResults(pageSize)
 				.getResultList();
