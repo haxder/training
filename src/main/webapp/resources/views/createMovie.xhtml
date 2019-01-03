@@ -38,97 +38,51 @@
 	<div class="container body-content">
 		<h2>Details</h2>
 		<h:form enctype="multipart/form-data">
-			<f:event listener="#{movieController.editInit}"
-				type="preRenderComponent" />
-			<p:outputPanel rendered="#{movieController.selectedMovie != null}" id="movieDetails">
+		<f:event listener="#{movieController.createMovieInit}" type="preRenderComponent" />
+			<p:outputPanel id="createMovie">
 				<div>
 					<h4>Movie</h4>
 					<hr />
-					<p:outputPanel rendered="#{movieController.editMovie == 'false'}">
+					<p:outputPanel>
 						<table>
 							<tr>
 								<td>
-									<p:graphicImage library="image" name="#{movieController.selectedMovie.image == null ? 'noImage.png' : movieController.selectedMovie.image}"
-											alt="#{movieController.selectedMovie.image == null ? 'No Image' : movieController.selectedMovie.image}" style="width : 240px; height : 355px"/>
-								</td>
-								<td>
-									<dl class="dl-horizontal">
-										<dt>Genre</dt>
-										<dd>
-											<h:outputText value="#{movieController.selectedMovie.genre}" />
-										</dd>
-										<dt>Title</dt>
-										<dd>
-											<h:outputText value="#{movieController.selectedMovie.title}" />
-										</dd>
-										<dt>Release Date</dt>
-										<dd>
-											<h:outputText value="#{movieController.selectedMovie.releaseDate}" >
-												<f:convertDateTime pattern="yyyy-MM-dd" />
-											</h:outputText>
-										</dd>
-										<dt>Price</dt>
-										<dd>
-											<h:outputText value="#{movieController.selectedMovie.price}" />
-										</dd>
-										<dt>Rate</dt>
-										<dd>
-											<p:rating value="#{movieController.selectedMovie.rate}"
-												readonly="true" />
-										</dd>
-										<dt/>
-										<dd><p:commandButton value="Edit" update="movieDetails" action="#{movieController.changeStatus}" ajax="false"/></dd>
-									</dl>
-								</td>
-							</tr>
-						</table>
-					</p:outputPanel>
-					<p:outputPanel rendered="#{movieController.editMovie}">
-						<table>
-							<tr>
-								<td>
-									<!-- <p:graphicImage
-										value="../image/#{movieController.selectedMovie.image}"
-										alt="#{movieController.selectedMovie.image}" /> --> 
-									<p:graphicImage library="image" name="#{movieController.selectedMovie.image == null ? 'noImage.png' : movieController.selectedMovie.image}"
-											alt="#{movieController.selectedMovie.image == null ? 'No Image' : movieController.selectedMovie.image}" style="width : 240px; height : 355px"/>
+									<p:graphicImage
+											library="image" name="#{movieController.createMovie.image == null ? 'noImage.png' : movieController.createMovie.image}"
+											alt="#{movieController.createMovie.image == null ? 'No Image' : movieController.createMovie.image}" style="width : 240px; height : 355px"/>
 									<h:inputFile value="#{movieController.imgfileUpload}" onchange="previewFile()"/>
 								</td>
 								<td>
 									<dl class="dl-horizontal">
 										<dt>Genre</dt>
 										<dd>
-											<p:inputText value="#{movieController.selectedMovie.genre}" />
+											<p:inputText value="#{movieController.createMovie.genre}" />
 										</dd>
 										<dt>Title</dt>
 										<dd>
-											<p:inputText value="#{movieController.selectedMovie.title}" />
+											<p:inputText value="#{movieController.createMovie.title}" />
 										</dd>
 										<dt>Release Date</dt>
 										<dd>
 											<p:calendar
-												value="#{movieController.selectedMovie.releaseDate}" pattern="yyyy-MM-dd" navigator="true"/>
+												value="#{movieController.createMovie.releaseDate}" pattern="yyyy-MM-dd" navigator="true"/>
 										</dd>
 										<dt>Price</dt>
 										<dd>
-											<p:inputText value="#{movieController.selectedMovie.price}" />
+											<p:inputText value="#{movieController.createMovie.price}" />
 										</dd>
 										<dt>Rate</dt>
 										<dd>
-											<p:rating value="#{movieController.selectedMovie.rate}" />
+											<p:rating value="#{movieController.createMovie.rate}" />
 										</dd>
 										<dt/>
-										<dd><p:commandButton value="Save" update="movieDetails" action="#{movieController.changeStatus}" ajax="false"/></dd>
+										<dd><p:commandButton value="Save" update="createMovie" action="#{movieController.createMovieAction}" ajax="false"/></dd>
 									</dl>
 								</td>
 							</tr>
 						</table>
 					</p:outputPanel>
 				</div>
-				<p>
-					<a href="/MoviesDBC/Edit/44">Edit</a> | <a href="/">Back to
-						List</a>
-				</p>
 			</p:outputPanel>
 		</h:form>
 		<hr />

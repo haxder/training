@@ -82,6 +82,7 @@
 				</p:dataTable>
 			</p:fieldset>
  -->
+ 			<h:link outcome="CREATEMOVIE" value="Create Movie"/>
 			<p:dataList value="#{movieController.movies}" var="mv"
 				type="unordered" itemType="none" paginator="true" rows="2"
 				style="margin-top: 50px;"
@@ -92,8 +93,8 @@
 				<div style="overflow: hidden; margin: 10px 0 0 10px;">
 					<table style="border: none">
 						<tr>
-							<td><p:graphicImage value="resources/image/#{mv.image}"
-									title="#{mv.image}" /></td>
+							<td><p:graphicImage library="image" name="#{mv.image == null ? 'noImage.png' : mv.image}"
+											alt="#{mv.image == null ? 'No Image' : mv.image}" style="width : 240px; height : 355px"/></td>
 							<td>
 								<div style="margin: 25px;">
 									<h:outputText value="#{mv.title}" style="font-weight: 700;" />

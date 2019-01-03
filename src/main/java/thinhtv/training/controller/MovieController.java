@@ -32,6 +32,9 @@ public class MovieController implements Serializable {
 	
 	// upload file
 	private Part imgfileUpload;
+	
+	// create Movie
+	private Movie createMovie;
 
 	/**
 	 * init data movies list view
@@ -90,6 +93,23 @@ public class MovieController implements Serializable {
 		movies = new MoviesLazyDataModel();
 	}
 	
+	public void createMovieInit() {
+		createMovie = new Movie();
+	}
+	
+	public String createMovieAction() {
+		if(imgfileUpload != null) {
+			saveFile(imgfileUpload);
+			createMovie.setImage(imgfileUpload.getSubmittedFileName());
+		}
+		Session ss = HibernateUtil.getSessionFactory().openSession();
+		Transaction ts = ss.getTransaction();
+		ts.begin();
+		ss.save(createMovie);
+		ts.commit();
+		return "/training";
+	}
+	
 	/**
 	 *  lưu file vào địa chỉ vùng nhớ thực trên server
 	 * @param file
@@ -142,6 +162,14 @@ public class MovieController implements Serializable {
 
 	public void setEditMovie(boolean editMovie) {
 		this.editMovie = editMovie;
+	}
+
+	public Movie getCreateMovie() {
+		return createMovie;
+	}
+
+	public void setCreateMovie(Movie createMovie) {
+		this.createMovie = createMovie;
 	}
 
 	/**
