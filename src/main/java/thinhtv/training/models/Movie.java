@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,9 +30,11 @@ public class Movie implements Serializable {
 
 	private static final long serialVersionUID = 6383578742528861934L;
 
+	/* trong oracl BD đã đăng ký  sequence : MOVIES_SQ  để có thể tự tạo ID*/
 	@Id
 	@Column(name = "MOVIE_ID")
-	@Generated(GenerationTime.INSERT)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen_id_sequence")
+	@SequenceGenerator(name = "gen_id_sequence", sequenceName ="MOVIES_SQ" , allocationSize = 1, initialValue = 1)
 	/* id auto increment */
 	private Integer movieId;
 
