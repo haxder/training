@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE facelet-taglib PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+  "facelet-taglib_1_0.dtd">
+
+<facelet-taglib>
+	<namespace>https://github.com/luvina-thinhtv</namespace>
+	<tag>
+		<tag-name>formMultiValidator</tag-name>
+		<component>
+			<component-type>FormMultileValidator</component-type>
+			<handler-class>thinhtv.training.JSFcustomTag.JSFCustomTagHandler.FormMultileValidatorComponentHandler</handler-class>
+		</component>
+	</tag>
+
+</facelet-taglib>

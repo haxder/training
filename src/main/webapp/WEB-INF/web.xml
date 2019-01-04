@@ -49,7 +49,10 @@
 		<param-value>true</param-value>
 	</context-param>
 
-
+   <context-param>
+      <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+      <param-value>/WEB-INF/JSFCustomTag.taglib.xml</param-value>
+   </context-param>
 
 <!--  Servlet  -->
 	<!-- Map these files with JSF -->
