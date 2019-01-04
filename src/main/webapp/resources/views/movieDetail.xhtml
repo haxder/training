@@ -83,7 +83,9 @@
 							</tr>
 						</table>
 					</p:outputPanel>
-					<p:outputPanel rendered="#{movieController.editMovie}">
+					<p:outputPanel rendered="#{movieController.editMovie}" id="editPanel">
+						<p:messages id="messages" closable="true" showIcon="false"/>
+						<p:focus context="editPanel"/>
 						<table>
 							<tr>
 								<td>
@@ -96,13 +98,13 @@
 								</td>
 								<td>
 									<dl class="dl-horizontal">
-										<dt>Genre</dt>
+										<dt><p:outputLabel value="Genre" for="input_genre" indicateRequired="true"/></dt>
 										<dd>
-											<p:inputText value="#{movieController.selectedMovie.genre}" />
+											<p:inputText id ="input_genre" value="#{movieController.selectedMovie.genre}" required="true"/>
 										</dd>
-										<dt>Title</dt>
+										<dt><p:outputLabel value="Title" for="input_title" indicateRequired="true"/></dt>
 										<dd>
-											<p:inputText value="#{movieController.selectedMovie.title}" />
+											<p:inputText id="input_title" value="#{movieController.selectedMovie.title}" required="true"/>
 										</dd>
 										<dt>Release Date</dt>
 										<dd>

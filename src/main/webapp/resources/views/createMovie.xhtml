@@ -44,6 +44,8 @@
 					<h4>Movie</h4>
 					<hr />
 					<p:outputPanel>
+						<p:messages id="messages" closable="true" showIcon="false"/>
+						<p:focus context="createMovie"/>
 						<table>
 							<tr>
 								<td>
@@ -54,13 +56,13 @@
 								</td>
 								<td>
 									<dl class="dl-horizontal">
-										<dt>Genre</dt>
+										<dt><p:outputLabel value="Genre" for="input_genre" indicateRequired="true"/></dt>
 										<dd>
-											<p:inputText value="#{movieController.createMovie.genre}" />
+											<p:inputText id ="input_genre" value="#{movieController.createMovie.genre}" required="true" label="Genre"/>
 										</dd>
-										<dt>Title</dt>
+										<dt><p:outputLabel value="Title" for="input_title" indicateRequired="true"/></dt>
 										<dd>
-											<p:inputText value="#{movieController.createMovie.title}" />
+											<p:inputText id="input_title" value="#{movieController.createMovie.title}"  required="true" label="Title"/>
 										</dd>
 										<dt>Release Date</dt>
 										<dd>
