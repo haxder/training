@@ -43,7 +43,10 @@ public class FormMultileValidator extends UIInput{
 		
 		String[] forIdsArrays = forIds.split(",");
 		for (String id : forIdsArrays) {
-			UIComponent cmp = findComponent(id);
+			UIComponent cmp = findComponent(id.trim());
+			if(cmp == null) {
+				throw new IllegalArgumentException("khoong tim thay component id : "+ id.trim());
+			}
 			components.add(cmp);
 			
 			EditableValueHolder editHolder = (EditableValueHolder) cmp;

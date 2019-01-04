@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:tvt="https://github.com/luvina-thinhtv">
 <h:head>
 	<h:outputStylesheet library="css" name="bootstrap.css"/>
 	<h:outputScript library="scripts" name="jquery-1.10.2.js"/>
@@ -34,7 +35,7 @@
 	</div>
 	<div class="container body-content">
 		<h2>Details</h2>
-		<h:form enctype="multipart/form-data">
+		<h:form enctype="multipart/form-data" id="form">
 		<f:event listener="#{movieController.createMovieInit}" type="preRenderComponent" />
 			<p:outputPanel id="createMovie">
 				<div>
@@ -43,6 +44,7 @@
 					<p:outputPanel>
 						<p:messages id="messages" closable="true" showIcon="false"/>
 						<p:focus context="createMovie"/>
+						<tvt:formMultiValidator forIds="input_genre, input_title" validator="formValidator"/>
 						<table>
 							<tr>
 								<td>
@@ -64,11 +66,14 @@
 										<dt>Release Date</dt>
 										<dd>
 											<p:calendar
-												value="#{movieController.createMovie.releaseDate}" pattern="yyyy-MM-dd" navigator="true"/>
+												value="#{movieController.createMovie.releaseDate}" pattern="yyyy-MM-dd" navigator="true" label="Release Date"/>
 										</dd>
 										<dt>Price</dt>
 										<dd>
-											<p:inputText value="#{movieController.createMovie.price}" />
+											<p:inputText id="input_price" value="#{movieController.createMovie.price}" label="Price">
+												<f:validateRegex pattern="[1-9]([0-9])*"/>
+												<f:validateLength maximum="2"/>
+											</p:inputText>
 										</dd>
 										<dt>Rate</dt>
 										<dd>
