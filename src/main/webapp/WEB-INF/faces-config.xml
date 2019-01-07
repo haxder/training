@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
-<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+<faces-config metadata-complete="false" version="2.2"
+ xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
- <application/>
- 
+ <application>
+  <locale-config>
+   <default-locale>en_US</default-locale>
+  </locale-config>
+  <message-bundle>JSF_MyErrorMessage</message-bundle>
+ </application>
  <lifecycle>
-    <phase-listener>thinhtv.training.listener.MyPhaseListener</phase-listener>
-</lifecycle>
-
- 
+  <phase-listener>thinhtv.training.listener.MyPhaseListener</phase-listener>
+ </lifecycle>
 </faces-config>
