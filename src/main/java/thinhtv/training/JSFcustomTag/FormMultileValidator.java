@@ -72,6 +72,7 @@ public class FormMultileValidator extends UIInput{
 		for (UIComponent cmp : components) {
 			fc.addMessage(cmp.getClientId(fc), msg);
 			if (cmp instanceof EditableValueHolder) {
+				// nếu không thiết định là false thì sẽ hiển thị cả validate khác. ví du: reqired tại tag <h:input>
 				((EditableValueHolder) cmp).setValid(false);
 			}
 		}

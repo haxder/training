@@ -44,7 +44,7 @@
 					<p:outputPanel>
 						<p:messages id="messages" closable="true" showIcon="false"/>
 						<p:focus context="createMovie"/>
-						<tvt:formMultiValidator forIds="input_genre, input_title" validator="formValidator"/>
+						<tvt:formMultiValidator forIds="input_genre, input_title" validator="#{formValidator.validateInput}"/>
 						<table>
 							<tr>
 								<td>
