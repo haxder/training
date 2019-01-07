@@ -107,7 +107,7 @@ public class MovieController implements Serializable {
 		ts.begin();
 		ss.save(createMovie);
 		ts.commit();
-		return "/training";
+		return "INDEX";
 	}
 	
 	/**
