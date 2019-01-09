@@ -115,7 +115,7 @@ public class MovieController implements Serializable {
 	 * @param file
 	 */
 	private void saveFile(Part file) {
-		String dirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/image");
+		String dirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/trainingExtensionSource/images");
 		try {
 			file.write(dirPath + "/" + file.getSubmittedFileName());
 		} catch (IOException e) {

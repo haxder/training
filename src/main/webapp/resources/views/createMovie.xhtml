@@ -48,8 +48,12 @@
 						<table>
 							<tr>
 								<td>
-									<p:graphicImage
+									<!-- <p:graphicImage
 											library="image" name="#{movieController.createMovie.image == null ? 'noImage.png' : movieController.createMovie.image}"
+											alt="#{movieController.createMovie.image == null ? 'No Image' : movieController.createMovie.image}" style="width : 240px; height : 355px"/>
+									<h:inputFile value="#{movieController.imgfileUpload}" onchange="previewFile()"/> -->
+									<p:graphicImage
+											value="/trainingExtensionSource/images/#{movieController.createMovie.image == null ? 'noImage.png' : movieController.createMovie.image}"
 											alt="#{movieController.createMovie.image == null ? 'No Image' : movieController.createMovie.image}" style="width : 240px; height : 355px"/>
 									<h:inputFile value="#{movieController.imgfileUpload}" onchange="previewFile()"/>
 								</td>

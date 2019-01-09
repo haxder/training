@@ -45,7 +45,7 @@
 						<table>
 							<tr>
 								<td>
-									<p:graphicImage library="image" name="#{movieController.selectedMovie.image == null ? 'noImage.png' : movieController.selectedMovie.image}"
+									<p:graphicImage value="/trainingExtensionSource/images/#{movieController.selectedMovie.image == null ? 'noImage.png' : movieController.selectedMovie.image}"
 											alt="#{movieController.selectedMovie.image == null ? 'No Image' : movieController.selectedMovie.image}" style="width : 240px; height : 355px"/>
 								</td>
 								<td>
@@ -86,10 +86,7 @@
 						<table>
 							<tr>
 								<td>
-									<!-- <p:graphicImage
-										value="../image/#{movieController.selectedMovie.image}"
-										alt="#{movieController.selectedMovie.image}" /> --> 
-									<p:graphicImage library="image" name="#{movieController.selectedMovie.image == null ? 'noImage.png' : movieController.selectedMovie.image}"
+									<p:graphicImage value="/trainingExtensionSource/images/#{movieController.selectedMovie.image == null ? 'noImage.png' : movieController.selectedMovie.image}"
 											alt="#{movieController.selectedMovie.image == null ? 'No Image' : movieController.selectedMovie.image}" style="width : 240px; height : 355px"/>
 									<h:inputFile value="#{movieController.imgfileUpload}" onchange="previewFile()"/>
 								</td>
