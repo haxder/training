@@ -29,7 +29,7 @@
 		<param-value>true</param-value>
 	</context-param>
 	<context-param>
-		<param-name>facelets.REFRESH_PERIOD</param-name>
+		<param-name>facelets.FACELETS_REFRESH_PERIOD</param-name>
 		<param-value>0</param-value>
 	</context-param>
 
@@ -41,7 +41,7 @@
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>cupertino</param-value>
+		<param-value>bootstrap</param-value>
 	</context-param>
 	<!-- fix bug convert date bị trừ 1 ngày -->
 	<context-param>
@@ -77,16 +77,6 @@
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
-
-
-<!--  Listener (có thể khai báo trưc tiếp bằng anotation @WebListener)   -->
-<!-- <listener>
-	<listener-class>thinhtv.training.listener.SessionFactoryListener</listener-class>
-</listener> -->
-
-
-
-
 	<error-page>
 		<error-code>404</error-code>
 		<location>/resources/views/error.xhtml</location>

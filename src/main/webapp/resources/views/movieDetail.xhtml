@@ -35,8 +35,7 @@
 	<div class="container body-content">
 		<h2>Details</h2>
 		<h:form enctype="multipart/form-data">
-			<f:event listener="#{movieController.editInit}"
-				type="preRenderComponent" />
+			<f:event listener="#{movieController.editInit}" type="preRenderComponent" />
 			<p:outputPanel rendered="#{movieController.selectedMovie != null}" id="movieDetails">
 				<div>
 					<h4>Movie</h4>

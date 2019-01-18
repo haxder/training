@@ -19,6 +19,13 @@
 		<project.java.version>1.8</project.java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<!-- database properties -->
+		<database.connect.driver>oracle.jdbc.OracleDriver</database.connect.driver>
+		<database.connect.url>jdbc:oracle:thin:@localhost:1521:thinhtv</database.connect.url>
+		<database.connect.username>training</database.connect.username>
+		<database.connect.password>12345</database.connect.password>
+		
 	</properties>
 	<dependencies>
 		<dependency>
@@ -92,12 +99,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.4.0.Final</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections</artifactId>
 			<version>0.9.11</version>
@@ -116,7 +117,22 @@
 		    <artifactId>mybatis</artifactId>
 		    <version>3.4.6</version>
 		</dependency>
-		
+<!-- 		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-cdi</artifactId>
+		    <version>1.1.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.enterprise</groupId>
+		    <artifactId>cdi-api</artifactId>
+		    <version>2.0</version>
+		    <scope>provided</scope>
+		</dependency> -->
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+		</dependency>
 	</dependencies>
 
 	<build>

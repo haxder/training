@@ -2,66 +2,54 @@ package thinhtv.training.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Part;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
 
-import thinhtv.training.Utils.HibernateUtil;
-import thinhtv.training.models.Movie;
-import thinhtv.training.models.lazyDataModels.MoviesLazyDataModel;
+import thinhtv.training.entity.Movie;
+import thinhtv.training.mybatis.MybatisUtils;
+import thinhtv.training.mybatis.mapper.MovieMapper;
 
 @ManagedBean(name = "movieController")
 @ViewScoped
 public class MovieController implements Serializable {
 	private static final long serialVersionUID = -2788199977054986476L;
-
-	// private List<Movie> movies = null;
-	private LazyDataModel<Movie> movies = new MoviesLazyDataModel();
 	
+	@ManagedProperty("#{mybastis}")
+	private MybatisUtils mybatisUtils;
+	
+	// private List<Movie> movies = null;
+	private LazyDataModel<Movie> movies = createMovieLazyModel();
+
 	// edit action
 	private Movie selectedMovie;
 	private String selectedMovieID;
 	private boolean editMovie;
-	
+
 	// upload file
 	private Part imgfileUpload;
-	
+
 	// create Movie
 	private Movie createMovie;
 
-	/**
-	 * init data movies list view
-	 */
-	public void init() {
-		/*
-		 * if ((FacesContext.getCurrentInstance().getCurrentPhaseId() ==
-		 * PhaseId.RENDER_RESPONSE)) { Session session =
-		 * HibernateUtil.getSessionFactory().openSession(); movies =
-		 * session.createQuery("From MOVIES", Movie.class).list(); session.close(); }
-		 */
-	}
-
 	public void editInit() {
-		Map<String, String> rqParameters = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap();
-		String selectMVID = rqParameters.get("selectedMovieID");
-		try {
-			Session ss = HibernateUtil.getSessionFactory().openSession();
-			selectedMovie = ss.createQuery("From MOVIES where MOVIE_ID = :selectId", Movie.class)
-					.setParameter("selectId", selectMVID).getSingleResult();
-			ss.close();
-		} catch (Exception e) {
-			
+		if (selectedMovie == null) {
+			Map<String, String> rqParameters = FacesContext.getCurrentInstance().getExternalContext()
+					.getRequestParameterMap();
+			String selectMVID = rqParameters.get("selectedMovieID");
+			MovieMapper mapper = mybatisUtils.getMapper(MovieMapper.class);
+			selectedMovie = mapper.findMovieBy(selectMVID);
 		}
 	}
-	
+
 	/**
 	 * thay ddooir trạng thái button  = ajax, save data
 	 */
@@ -71,11 +59,8 @@ public class MovieController implements Serializable {
 				saveFile(imgfileUpload);
 				selectedMovie.setImage(imgfileUpload.getSubmittedFileName());
 			}
-			Session ss = HibernateUtil.getSessionFactory().openSession();
-			Transaction tx8 = ss.beginTransaction();
-			ss.saveOrUpdate(selectedMovie);
-			tx8.commit();
-			ss.close();
+			MovieMapper mapper = mybatisUtils.getMapper(MovieMapper.class);
+			mapper.updateMovie(selectedMovie);
 		}
 		editMovie = !editMovie;
 	}
@@ -85,12 +70,10 @@ public class MovieController implements Serializable {
 	 * @param mv
 	 */
 	public void delete (Movie mv) {
-		Session ss = HibernateUtil.getSessionFactory().openSession();
-		Transaction ts = ss.getTransaction();
-		ts.begin();
-		ss.delete(mv);
-		ts.commit();
-		movies = new MoviesLazyDataModel();
+		MovieMapper mapper = mybatisUtils.getMapper(MovieMapper.class);
+		mapper.deleteMovie(mv);
+		// update lại model
+		movies = createMovieLazyModel();
 	}
 	
 	public void createMovieInit() {
@@ -102,11 +85,8 @@ public class MovieController implements Serializable {
 			saveFile(imgfileUpload);
 			createMovie.setImage(imgfileUpload.getSubmittedFileName());
 		}
-		Session ss = HibernateUtil.getSessionFactory().openSession();
-		Transaction ts = ss.getTransaction();
-		ts.begin();
-		ss.save(createMovie);
-		ts.commit();
+		MovieMapper mapper = mybatisUtils.getMapper(MovieMapper.class);
+		mapper.insertMovie(createMovie);
 		return "INDEX";
 	}
 	
@@ -119,8 +99,6 @@ public class MovieController implements Serializable {
 		try {
 			file.write(dirPath + "/" + file.getSubmittedFileName());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
@@ -171,19 +149,24 @@ public class MovieController implements Serializable {
 	public void setCreateMovie(Movie createMovie) {
 		this.createMovie = createMovie;
 	}
+	public MybatisUtils getMybatisUtils() {
+		return mybatisUtils;
+	}
 
-	/**
-	 * lấy data theo sql thuần
-	 */
-/*		
-	 * public String selectAllMovies() throws SQLException, ClassNotFoundException {
-	 * 
-	 * MoviesDataManager manager = new MoviesDataManager(); movies =
-	 * manager.selectAllMovies(); return ""; }
-	 * 
-	 * public List<Movie> getMovies() { return movies; }
-	 * 
-	 * public void setMovies(List<Movie> movies) { this.movies = movies; }
-	 */
-
+	public void setMybatisUtils(MybatisUtils mybatisUtils) {
+		this.mybatisUtils = mybatisUtils;
+	}
+	
+	private LazyDataModel<Movie> createMovieLazyModel() {
+		return new LazyDataModel<Movie>() {
+			private static final long serialVersionUID = -7234634978113645736L;
+			@Override
+			public List<Movie> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+				MovieMapper mapper = mybatisUtils.getMapper(MovieMapper.class);
+				Long count = mapper.countAll();
+				this.setRowCount(count.intValue());
+				return mapper.lazyLoad(first, pageSize);
+			}
+		};
+	}
 }

@@ -39,7 +39,6 @@
 
 		<h2>Index</h2>
 		<h:form id="moviesForm">
-			<f:event listener="#{movieController.init}" type="preRenderComponent" />
 			<!-- <div>
 				<p:galleria value="#{movieController.movies}" var="mv"
 					panelWidth="500" panelHeight="313" showCaption="true">
@@ -99,7 +98,9 @@
 									<br />
 									<h:outputText value="#{mv.genre}" />
 									<br />
-									<h:outputText value="#{mv.releaseDate}" />
+									<h:outputText value="#{mv.releaseDate}" >
+										<f:convertDateTime pattern="yyyy-MM-dd" />
+									</h:outputText>
 									<br />
 									<h:outputText value="#{mv.price}" />
 									<br />
