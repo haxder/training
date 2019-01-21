@@ -94,7 +94,7 @@ public class MovieController implements Serializable {
 	
 	public void exportExcel() {
 		try {
-			DownloadUtils.downloadExcel(ExcelUtils.createXSSFWorkbook());
+			DownloadUtils.downloadExcel(ExcelUtils.createXSSFWorkbook(movies.getWrappedData()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
