@@ -133,6 +133,12 @@
 		    <artifactId>log4j</artifactId>
 		    <version>1.2.17</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		    <version>3.9</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -164,6 +170,7 @@
 					<configuration>
 						<port>8080</port>
 						<path>/${project.name}</path>
+						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>
 			</plugins>

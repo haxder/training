@@ -14,6 +14,8 @@ import javax.servlet.http.Part;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
+import common.DownloadUtils;
+import common.ExcelUtils;
 import thinhtv.training.entity.Movie;
 import thinhtv.training.mybatis.MybatisUtils;
 import thinhtv.training.mybatis.mapper.MovieMapper;
@@ -88,6 +90,15 @@ public class MovieController implements Serializable {
 		MovieMapper mapper = mybatisUtils.getMapper(MovieMapper.class);
 		mapper.insertMovie(createMovie);
 		return "INDEX";
+	}
+	
+	public void exportExcel() {
+		try {
+			DownloadUtils.downloadExcel(ExcelUtils.createXSSFWorkbook());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
