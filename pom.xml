@@ -117,17 +117,11 @@
 		    <artifactId>mybatis</artifactId>
 		    <version>3.4.6</version>
 		</dependency>
-<!-- 		<dependency>
-		    <groupId>org.mybatis</groupId>
-		    <artifactId>mybatis-cdi</artifactId>
-		    <version>1.1.0</version>
-		</dependency>
 		<dependency>
-		    <groupId>javax.enterprise</groupId>
-		    <artifactId>cdi-api</artifactId>
-		    <version>2.0</version>
-		    <scope>provided</scope>
-		</dependency> -->
+			<groupId>org.mybatis.dynamic-sql</groupId>
+			<artifactId>mybatis-dynamic-sql</artifactId>
+			<version>1.1.0</version>
+		</dependency>
 		<dependency>
 		    <groupId>log4j</groupId>
 		    <artifactId>log4j</artifactId>
@@ -138,7 +132,6 @@
 		    <artifactId>poi-ooxml</artifactId>
 		    <version>3.9</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
