@@ -1,6 +1,10 @@
 package thinhtv.training.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -106,10 +110,31 @@ public class MovieController implements Serializable {
 	 * @param file
 	 */
 	private void saveFile(Part file) {
-		String dirPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/trainingExtensionSource/images");
+		OutputStream out = null;
+		InputStream input = null;
 		try {
-			file.write(dirPath + "/" + file.getSubmittedFileName());
-		} catch (IOException e) {
+			String dirPath = new File(FacesContext.getCurrentInstance()
+					.getExternalContext()
+					.getResource("/trainingExtensionSource/images").toURI())
+					.getAbsolutePath();
+			File f = new File(dirPath +"/"+ file.getSubmittedFileName());
+			out = new FileOutputStream(f);
+			input = file.getInputStream();
+			byte[] buffer = new byte[1024];
+			int length;
+
+			while ((length = input.read(buffer)) > 0) {
+				out.write(buffer, 0, length);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				out.close();
+				input.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
