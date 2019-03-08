@@ -25,9 +25,9 @@
             <transactionManager type="MANAGED"/>
             <dataSource type="POOLED">
                 <property name="driver" value="oracle.jdbc.OracleDriver"/>
-                <property name="url" value="jdbc:oracle:thin:@localhost:1521:thinhtv"/>
+                <property name="url" value="jdbc:oracle:thin:@fusion-dev1:1521:db12c"/>
                 <property name="username" value="training"/>
-                <property name="password" value="12345"/>
+                <property name="password" value="training"/>
             </dataSource>
         </environment>
     </environments>
