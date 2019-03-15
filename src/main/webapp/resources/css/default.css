@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f5fdfe;
+	font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+	color: #0e4e7e;
+	margin: auto;
+}
+.ui-widget-header {
+	background: #aabcc7
+}
+
+.mytable table {
+    table-layout: auto !important;
+    overflow-x:auto;
+}
+
+.mytable th, .mytable td, .mytable thead th, .mytable tbody td, .mytable tfoot td, .mytable tfoot th {
+    width: 200px !important;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.ui-widget-content a{
+	color: #0292fd
+}
+
+dt {
+  float: left;
+  clear: left;
+  margin-right: 5px;vertical-align:middle;
+}
+
+dd {
+  margin-left: 0px;
+}
+
+.ui-button .ui-button-text{
+	display: block;
+    line-height: 20px!important;
+}
+
+.menuBarClass {
+	position: fixed!important;
+	width: 99%!important;
+	z-index: 1;
+}
+.navMenuBar{
+	width: 235px;
+	position: fixed;
+	z-index: 1;
+}

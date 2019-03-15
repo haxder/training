@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +23,10 @@ import org.primefaces.model.SortOrder;
 import common.DownloadUtils;
 import common.ExcelUtils;
 import thinhtv.training.entity.Movie;
+import thinhtv.training.entity.jizenGaiKeizu;
+import thinhtv.training.entity.kenToIrai;
+import thinhtv.training.entity.kessai_jyouhou;
+import thinhtv.training.entity.test;
 import thinhtv.training.mybatis.MybatisUtils;
 import thinhtv.training.mybatis.mapper.MovieMapper;
 
@@ -28,6 +34,7 @@ import thinhtv.training.mybatis.mapper.MovieMapper;
 @ViewScoped
 public class MovieController implements Serializable {
 	private static final long serialVersionUID = -2788199977054986476L;
+	private List<test> list101 = getList101();
 	
 	@ManagedProperty("#{mybastis}")
 	private MybatisUtils mybatisUtils;
@@ -205,4 +212,28 @@ public class MovieController implements Serializable {
 			}
 		};
 	}
+	public List<test> getList101() {
+		List<test> xxx = new ArrayList<test>();
+		List<test> ls = new ArrayList<test>();
+		test x = new test(new kessai_jyouhou("決裁中", "xxxxxxxx-xx", "xxxxxxxx-xxxxxx-xxx", "XXXXXXXXXXXXXXXX"),
+				new kenToIrai(null, null, null, null, null, null, null),
+				new jizenGaiKeizu(null,null, null, null, null, null));		
+		
+		ls.add(x);
+		x = new test(new kessai_jyouhou("決裁済", "xxxxxxxx-xx", "xxxxxxxx-xxxxxx-xxx", "XXXXXXXXXXXXXXXX"),
+				new kenToIrai("回答済", "xxxxxxxx", new Date(), "xxxxxxxxx", "0", "xxxxxxxxx", "xxxxxxxxx"),
+				new jizenGaiKeizu("依頼済", new Date(), "xxxxxxxxx", "0", "xxxxxxxxx", "xxxxxxxxx"));
+		
+		ls.add(x);
+		
+		for (int i = 0; i < 40; i++) {
+			xxx.addAll(ls);
+		}
+		return  xxx;
+	}
+
+	public void setList101(List<test> list101) {
+		this.list101 = list101;
+	}
+	
 }

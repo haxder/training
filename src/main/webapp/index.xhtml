@@ -1,128 +1,330 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<h:outputStylesheet library="css" name="bootstrap.css"/>
-	<h:outputScript library="scripts" name="jquery-1.10.2.js"/>
-	<h:outputScript library="scripts" name="jquery-ui.js"/>
-	<h:outputScript library="scripts" name="bootstrap.js"/>
+	<h:outputStylesheet library="css" name="default.css" />
+	<h:outputScript library="scripts" name="jquery-1.10.2.js" />
+	<h:outputScript library="scripts" name="jquery-ui.js" />
+	<h:outputScript library="scripts" name="bootstrap.js" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	
 	<title>this is Index Page</title>
 </h:head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/training">MVC Movies</a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/training">Home</a></li>
-					<li><a href="/Movies/About">About</a></li>
-					<li><a href="/Movies/Movies">Movies</a></li>
-				</ul>
-			</div>
-		</div>
+	<div>
+		<h:form id="menubarForm">
+			<p:menubar id="menubar" styleClass="menuBarClass">
+				<p:menuitem value="ホーム" url="../training" icon="ui-icon-home" />
+				<p:menuitem value="ユーザ情報" icon="ui-icon-gear" />
+				<f:facet name="options">
+					<p:commandButton value="ログアウト" icon="ui-icon-arrowthickstop-1-e" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
 	</div>
-
-	<div class="container body-content">
-
-
-		<h2>Index</h2>
-		<h:form id="moviesForm">
-			<!-- <div>
-				<p:galleria value="#{movieController.movies}" var="mv"
-					panelWidth="500" panelHeight="313" showCaption="true">
-					<p:graphicImage value="resources/image/#{mv.image}"
-						alt="Image Description for #{mv.image}" title="#{mv.image}" />
-				</p:galleria>
-			</div> -->
-			<!-- <p:fieldset legend="Movies">
-				<p:dataTable border="1" value="#{movieController.movies}" var="mv"
-					paginator="true" rows="1"
-					paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}
-                             {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-					rowsPerPageTemplate="1,2,3" lazy="true">
-					<p:column id="column1" >
-						<table>
-						<tr>
-							<td><p:graphicImage value="resources/image/#{mv.image}"
-									title="#{mv.image}" /></td>
-							<td>
-								<div style="margin: 25px;">
-									<h:outputText value="#{mv.title}" style="font-weight: 700;" />
-									<br />
-									<h:outputText value="#{mv.genre}" />
-									<br />
-									<h:outputText value="#{mv.releaseDate}" />
-									<br />
-									<h:outputText value="#{mv.price}" />
-									<br />
-									<p:rating value="#{mv.rate}" readonly="true" />
-									<p:link outcome="MOVIEDETAIL" value="Edit">
-										<f:param name="selectedMovieID" value="#{mv.movieId}"></f:param>
-									</p:link>
-								</div>
-							</td>
-						</tr>
+	<p:spacer height="50px" />
+	<div>
+		<div class="navMenuBar">
+			<h:form id="megaMenuForm">
+				<p:megaMenu orientation="vertical">
+					<p:menuitem value="マイポータル" />
+					<p:submenu label="決裁">
+						<p:column>
+							<p:submenu label="決裁">
+								<p:menuitem value="決裁一覧" url="#" />
+								<p:menuitem value="特注検討 新規依頼" url="#" />
+								<p:menuitem value="事前外形図 新規依頼" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="オーダ">
+						<p:column>
+							<p:submenu label="オーダ">
+								<p:menuitem value="オーダ一覧" url="#" />
+								<p:menuitem value="納入仕様書発行 新規依頼	" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="特注設計">
+						<p:column>
+							<p:submenu label="特注設計">
+								<p:menuitem value="受付" url="#" />
+								<p:menuitem value="調要設計" url="#" />
+								<p:menuitem value="調要検索" url="#" />
+								<p:menuitem value="照査" url="#" />
+								<p:menuitem value="承認" url="#" />
+								<p:menuitem value="担当者変更・保留解除" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="SAP連携設定">
+						<p:column>
+							<p:submenu label="SAP連携設定">
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="検索機能">
+						<p:column>
+							<p:submenu label="検索機能">
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="コラボレーション">
+						<p:column>
+							<p:submenu label="コラボレーション">
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="メンテナンス">
+						<p:column>
+							<p:submenu label="メンテナンス">
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+				</p:megaMenu>
+			</h:form>
+		</div>
+		<div id="main" style="padding-left: 235px; padding-right: 10px">
+			<h:form id="searchForm">
+				<p:panel id="toggleable" widgetVar="panel" header="検索エリア"
+					toggleable="true" style="di">
+					<table>
+					    <tr>
+					        <td><p:outputLabel value="PMK受付NO" /></td>
+					        <td><p:inputText id="PMK受付NO" /></td>
+					        <td><p:outputLabel value="決裁NO" /></td>
+					        <td><p:inputText id="決裁NO" /></td>
+					    </tr>
+					    <tr>
+					    	<td><p:outputLabel value="有効期限" /></td>
+					    	<td>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    		<h:outputText value="～"/>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    	</td>
+					    	<td/>
+					    	<td/>
+					    </tr>
+					    <tr>
+					        <td><p:outputLabel value="YQUOTEステータス" /></td>
+					        <td>
+					        	<p:selectBooleanCheckbox itemLabel="決裁中"/>
+					        	<p:selectBooleanCheckbox itemLabel="決裁済"/>
+					        	<p:selectBooleanCheckbox itemLabel="キャンセル"/>
+					        </td>
+					        <td/>
+					    	<td/>
+					    </tr>
+					    <tr>
+					    	<td><p:outputLabel value="特注検討依頼日" /></td>
+					    	<td>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    		<h:outputText value="～"/>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    	</td>
+					    	<td><p:outputLabel value="特注検討依頼者" /></td>
+					        <td><p:inputText id="特注検討依頼者" /></td>
+					    </tr>
+					    <tr>
+					        <td><p:outputLabel value="特注検討依頼NO" /></td>
+					        <td><p:inputText id="特注検討依頼NO" /></td>
+					        <td><p:outputLabel value="特注検討回答者" /></td>
+					        <td><p:inputText id="特注検討回答者" /></td>
+					    </tr>
+					    <tr>
+					    	<td><p:outputLabel value="事前外形図依頼日" /></td>
+					    	<td>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    		<h:outputText value="～"/>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    	</td>
+					    	<td><p:outputLabel value="事前外形図依頼者" /></td>
+					        <td><p:inputText id="事前外形図依頼者" /></td>
+					    </tr>
+					    <tr>
+					        <td><p:outputLabel value="事前外形図依頼NO" /></td>
+					        <td><p:inputText id="事前外形図依頼NO" /></td>
+					        <td><p:outputLabel value="事前外形図回答者" /></td>
+					        <td><p:inputText id="事前外形図回答者" /></td>
+					    </tr>
+ 					    <tr>
+					        <td><p:outputLabel value="特注検討ステータス" /></td>
+					        <td colspan="3">
+					        	<p:selectBooleanCheckbox itemLabel="未依頼"/>
+					        	<p:selectBooleanCheckbox itemLabel="依頼済"/>
+					        	<p:selectBooleanCheckbox itemLabel="検討中"/>
+					        	<p:selectBooleanCheckbox itemLabel="承認待"/>
+					        	<p:selectBooleanCheckbox itemLabel="回答済"/>
+					        	<p:selectBooleanCheckbox itemLabel="キャンセル"/>
+					        	<p:selectBooleanCheckbox itemLabel="棄却"/>
+					        </td>
+					    </tr>
+					    <tr>
+					        <td><p:outputLabel value="事前外形図ステータス" /></td>
+					        <td colspan="3">
+					        	<p:selectBooleanCheckbox itemLabel="未依頼"/>
+					        	<p:selectBooleanCheckbox itemLabel="作業中"/>
+					        	<p:selectBooleanCheckbox itemLabel="回答済"/>
+					        	<p:selectBooleanCheckbox itemLabel="受領済"/>
+					        	<p:selectBooleanCheckbox itemLabel="キャンセル"/>
+					        	<p:selectBooleanCheckbox itemLabel="棄却"/>
+					        </td>
+					    </tr>
 					</table>
+					<p:spacer height="30px"/>
+					<div style="float: right; margin-top: 5px">
+						<p:commandButton action="#" value="検索" icon="ui-icon-search"/>
+						<p:commandButton action="#" value="クリア"/>
+					</div>
+				</p:panel>
+			</h:form>
+			<p:spacer height="10px" />
+			<h:form id="moviesForm">
+				<p:dataList value="#{movieController.movies}" var="mv"
+					itemType="none" paginator="true" rows="2"
+					paginatorTemplate="件数:50件 {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					lazy="true" paginatorPosition="top" style="display: none;">
+					<div>
+						<table style="width: 328px; ">
+							<tr>
+								<td><p:graphicImage
+										value="/trainingExtensionSource/images/#{mv.image == null ? 'noImage.png' : mv.image}"
+										alt="#{mv.image == null ? 'No Image' : mv.image}"
+										style="width : 240px; height : 355px" /></td>
+								<td>
+									<div style="margin: 25px;">
+										<h:outputText value="#{mv.title}" style="font-weight: 700;" />
+										<br />
+										<h:outputText value="#{mv.genre}" />
+										<br />
+										<h:outputText value="#{mv.releaseDate}">
+											<f:convertDateTime pattern="yyyy-MM-dd" />
+										</h:outputText>
+										<br />
+										<h:outputText value="#{mv.price}" />
+										<br />
+										<p:rating value="#{mv.rate}" readonly="true" />
+										<h:link outcome="MOVIEDETAIL" value="Edit">
+											<f:param name="selectedMovieID" value="#{mv.movieId}"></f:param>
+										</h:link>
+										<!-- <p:commandButton action="#{movieController.delete(mv)}"
+											value="Delete" update="moviesForm"
+											onclick="return confirm('Are you sure you want delete movie?')" /> -->
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</p:dataList>
+				<div style="padding-bottom: 5px">
+					<p:commandButton action="#" value="特注検討新規依頼" styleClass="submitButton"/>
+					<p:commandButton action="#" value="事前外形図新規依頼" styleClass="submitButton"/>
+					<p:commandButton action="#" value="特注依頼回答" styleClass="submitButton"/>
+					<p:commandButton action="#" value="事前外形図依頼回答" styleClass="submitButton"/>
+				</div>
+				<p:dataTable var="ss101" value="#{movieController.list101}"
+					styleClass="mytable" rows="30" paginator="true"
+					paginatorTemplate="件数:50件 {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					paginatorPosition="top" rowKey="#{ss101}" style="height: 100px">
+					<p:columnGroup type="header">
+						<p:row>
+							<p:column rowspan="2" selectionMode="multiple"/>
+							<p:column colspan="4" headerText="決裁情報" />
+							<p:column colspan="7" headerText="特注検討依頼" />
+							<p:column colspan="6" headerText="事前外形図" />
+						</p:row>
+						<p:row>
+							<p:column headerText="ステータス" />
+							<p:column headerText="受付NO" />
+							<p:column headerText="特注NO" />
+							<p:column headerText="需要先" />
+
+							<p:column headerText="ステータス" />
+							<p:column headerText="形名" />
+							<p:column headerText="依頼日" />
+							<p:column headerText="依頼NO" />
+							<p:column headerText="依頼REV" />
+							<p:column headerText="依頼者" />
+							<p:column headerText="回答者" />
+
+							<p:column headerText="ステータス" />
+							<p:column headerText="依頼日" />
+							<p:column headerText="依頼NO" />
+							<p:column headerText="依頼REV" />
+							<p:column headerText="依頼者" />
+							<p:column headerText="回答者" />
+						</p:row>
+					</p:columnGroup>
+
+					<p:column>
+						<p:selectBooleanCheckbox value=""/>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kessai_jyouhou.status}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kessai_jyouhou.ukeNo}" />
+					</p:column>
+					<p:column>
+						<p:commandLink value="#{ss101.kessai_jyouhou.tokucyuNo}"
+							action="#" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kessai_jyouhou.jyuYo}" />
+					</p:column>
+
+					<p:column>
+						<p:commandLink value="#{ss101.kenToIrai.status}" action="#" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kenToIrai.keiMei}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kenToIrai.iraiHi}">
+							<f:convertDateTime pattern="yyyy-MM-dd" />
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kenToIrai.iraiNo}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kenToIrai.iraiREV}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kenToIrai.iraiSya}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.kenToIrai.kaitoSya}" />
+					</p:column>
+
+
+					<p:column>
+						<p:commandLink value="#{ss101.jizenGaiKeizu.status}" action="#" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.jizenGaiKeizu.iraiHi}" >
+							<f:convertDateTime pattern="yyyy-MM-dd" />
+						</h:outputText>
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.jizenGaiKeizu.iraiNo}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.jizenGaiKeizu.iraiREV}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.jizenGaiKeizu.iraiSya}" />
+					</p:column>
+					<p:column>
+						<h:outputText value="#{ss101.jizenGaiKeizu.kaitoSya}" />
 					</p:column>
 				</p:dataTable>
-			</p:fieldset>
- -->
- 			<h:link outcome="CREATEMOVIE" value="Create Movie"/>
-			<p:dataList value="#{movieController.movies}" var="mv"
-				type="unordered" itemType="none" paginator="true" rows="2"
-				style="margin-top: 50px;"
-				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink}
-                             {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-				rowsPerPageTemplate="1,2,3" lazy="true">
-				<f:facet name="header">Movies</f:facet>
-				<div style="overflow: hidden; margin: 10px 0 0 10px;">
-					<table style="border: none">
-						<tr>
-							<td><p:graphicImage value="/trainingExtensionSource/images/#{mv.image == null ? 'noImage.png' : mv.image}"
-											alt="#{mv.image == null ? 'No Image' : mv.image}" style="width : 240px; height : 355px"/></td>
-							<td>
-								<div style="margin: 25px;">
-									<h:outputText value="#{mv.title}" style="font-weight: 700;" />
-									<br />
-									<h:outputText value="#{mv.genre}" />
-									<br />
-									<h:outputText value="#{mv.releaseDate}" >
-										<f:convertDateTime pattern="yyyy-MM-dd" />
-									</h:outputText>
-									<br />
-									<h:outputText value="#{mv.price}" />
-									<br />
-									<p:rating value="#{mv.rate}" readonly="true" />
-									<h:link outcome="MOVIEDETAIL" value="Edit">
-										<f:param name="selectedMovieID" value="#{mv.movieId}"></f:param>
-									</h:link>
-									<p:commandButton action="#{movieController.delete(mv)}" value="Delete" update="moviesForm" onclick="return confirm('Are you sure you want delete movie?')"/>
-								</div>
-							</td>
-						</tr>
-					</table>
-
-				</div>
-			</p:dataList>
-			<p:commandButton value="Download" ajax="false" action="#{movieController.exportExcel}" icon="pi pi-arrow-down">
-			</p:commandButton>
-		</h:form>
-		<hr />
-		<footer>
-		<p>&copy; 2018 - Training ASP.Net with VB.NET by ThinhTV</p>
-		</footer>
+			</h:form>
+		</div>
+		<p:spacer height="10px"/>
 	</div>
 </body>
 </html>
