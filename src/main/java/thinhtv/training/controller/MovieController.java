@@ -235,5 +235,4 @@ public class MovieController implements Serializable {
 	public void setList101(List<test> list101) {
 		this.list101 = list101;
 	}
-	
 }

@@ -10,12 +10,12 @@ body {
 	background: #aabcc7
 }
 
-.mytable table {
+.myDatatable table {
     table-layout: auto !important;
     overflow-x:auto;
 }
 
-.mytable th, .mytable td, .mytable thead th, .mytable tbody td, .mytable tfoot td, .mytable tfoot th {
+.myDatatable th, .myDatatable td, .myDatatable thead th, .myDatatable tbody td, .myDatatable tfoot td, .myDatatable tfoot th {
     width: 200px !important;
     white-space: nowrap;
     text-align: center;
@@ -23,16 +23,6 @@ body {
 
 .ui-widget-content a{
 	color: #0292fd
-}
-
-dt {
-  float: left;
-  clear: left;
-  margin-right: 5px;vertical-align:middle;
-}
-
-dd {
-  margin-left: 0px;
 }
 
 .ui-button .ui-button-text{
@@ -49,4 +39,12 @@ dd {
 	width: 235px;
 	position: fixed;
 	z-index: 1;
+}
+
+.td-padding-left-100 {
+	padding-left: 100px;
+}
+
+.ui-outputlabel-rfi {
+	color: red;
 }

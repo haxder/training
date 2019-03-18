@@ -35,7 +35,7 @@
 						<p:column>
 							<p:submenu label="決裁">
 								<p:menuitem value="決裁一覧" url="#" />
-								<p:menuitem value="特注検討 新規依頼" url="#" />
+								<p:menuitem value="特注検討 新規依頼" action="ADDMOCK"/>
 								<p:menuitem value="事前外形図 新規依頼" url="#" />
 							</p:submenu>
 						</p:column>
@@ -90,64 +90,60 @@
 		<div id="main" style="padding-left: 235px; padding-right: 10px">
 			<h:form id="searchForm">
 				<p:panel id="toggleable" widgetVar="panel" header="検索エリア"
-					toggleable="true" style="di">
+					toggleable="true">
 					<table>
 					    <tr>
 					        <td><p:outputLabel value="PMK受付NO" /></td>
-					        <td><p:inputText id="PMK受付NO" /></td>
-					        <td><p:outputLabel value="決裁NO" /></td>
+					        <td><p:inputText id="PMK受付NO" required="true"/></td>
+					        <td class="td-padding-left-100"><p:outputLabel value="決裁NO" /></td>
 					        <td><p:inputText id="決裁NO" /></td>
 					    </tr>
 					    <tr>
 					    	<td><p:outputLabel value="有効期限" /></td>
-					    	<td>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
-					    		<h:outputText value="～"/>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    	<td colspan="3">
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<h:outputText value="　～ 　"/>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    	</td>
-					    	<td/>
-					    	<td/>
 					    </tr>
 					    <tr>
 					        <td><p:outputLabel value="YQUOTEステータス" /></td>
-					        <td>
+					        <td colspan="3">
 					        	<p:selectBooleanCheckbox itemLabel="決裁中"/>
 					        	<p:selectBooleanCheckbox itemLabel="決裁済"/>
 					        	<p:selectBooleanCheckbox itemLabel="キャンセル"/>
 					        </td>
-					        <td/>
-					    	<td/>
 					    </tr>
 					    <tr>
 					    	<td><p:outputLabel value="特注検討依頼日" /></td>
 					    	<td>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
-					    		<h:outputText value="～"/>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<h:outputText value="　～ 　"/>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    	</td>
-					    	<td><p:outputLabel value="特注検討依頼者" /></td>
+					    	<td class="td-padding-left-100"><p:outputLabel value="特注検討依頼者" /></td>
 					        <td><p:inputText id="特注検討依頼者" /></td>
 					    </tr>
 					    <tr>
 					        <td><p:outputLabel value="特注検討依頼NO" /></td>
 					        <td><p:inputText id="特注検討依頼NO" /></td>
-					        <td><p:outputLabel value="特注検討回答者" /></td>
+					        <td class="td-padding-left-100"><p:outputLabel value="特注検討回答者" /></td>
 					        <td><p:inputText id="特注検討回答者" /></td>
 					    </tr>
 					    <tr>
 					    	<td><p:outputLabel value="事前外形図依頼日" /></td>
 					    	<td>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
-					    		<h:outputText value="～"/>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja"/>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<h:outputText value="　～ 　"/>
+					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    	</td>
-					    	<td><p:outputLabel value="事前外形図依頼者" /></td>
+					    	<td class="td-padding-left-100"><p:outputLabel value="事前外形図依頼者" /></td>
 					        <td><p:inputText id="事前外形図依頼者" /></td>
 					    </tr>
 					    <tr>
 					        <td><p:outputLabel value="事前外形図依頼NO" /></td>
 					        <td><p:inputText id="事前外形図依頼NO" /></td>
-					        <td><p:outputLabel value="事前外形図回答者" /></td>
+					        <td  class="td-padding-left-100"><p:outputLabel value="事前外形図回答者" /></td>
 					        <td><p:inputText id="事前外形図回答者" /></td>
 					    </tr>
  					    <tr>
@@ -176,12 +172,15 @@
 					</table>
 					<p:spacer height="30px"/>
 					<div style="float: right; margin-top: 5px">
-						<p:commandButton action="#" value="検索" icon="ui-icon-search"/>
-						<p:commandButton action="#" value="クリア"/>
+						<p:commandButton value="検索" icon="ui-icon-search"/>
+						<p:commandButton value="クリア"/>
 					</div>
 				</p:panel>
 			</h:form>
-			<p:spacer height="10px" />
+			<p:messages id="messages" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+			<p:spacer height="30px" />
 			<h:form id="moviesForm">
 				<p:dataList value="#{movieController.movies}" var="mv"
 					itemType="none" paginator="true" rows="2"
@@ -219,14 +218,14 @@
 						</table>
 					</div>
 				</p:dataList>
-				<div style="padding-bottom: 5px">
-					<p:commandButton action="#" value="特注検討新規依頼" styleClass="submitButton"/>
+				<div style="padding-bottom: 25px">
+					<p:commandButton action="ADDMOCK" value="特注検討新規依頼" styleClass="submitButton"/>
 					<p:commandButton action="#" value="事前外形図新規依頼" styleClass="submitButton"/>
 					<p:commandButton action="#" value="特注依頼回答" styleClass="submitButton"/>
 					<p:commandButton action="#" value="事前外形図依頼回答" styleClass="submitButton"/>
 				</div>
 				<p:dataTable var="ss101" value="#{movieController.list101}"
-					styleClass="mytable" rows="30" paginator="true"
+					styleClass="myDatatable" rows="30" paginator="true"
 					paginatorTemplate="件数:50件 {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 					paginatorPosition="top" rowKey="#{ss101}" style="height: 100px">
 					<p:columnGroup type="header">
@@ -260,7 +259,7 @@
 					</p:columnGroup>
 
 					<p:column>
-						<p:selectBooleanCheckbox value=""/>
+						<p:selectBooleanCheckbox value="1"/>
 					</p:column>
 					<p:column>
 						<h:outputText value="#{ss101.kessai_jyouhou.status}" />
@@ -277,7 +276,7 @@
 					</p:column>
 
 					<p:column>
-						<p:commandLink value="#{ss101.kenToIrai.status}" action="#" />
+						<p:commandLink value="#{ss101.kenToIrai.status}" action="#"/>
 					</p:column>
 					<p:column>
 						<h:outputText value="#{ss101.kenToIrai.keiMei}" />
@@ -324,7 +323,6 @@
 				</p:dataTable>
 			</h:form>
 		</div>
-		<p:spacer height="10px"/>
 	</div>
 </body>
 </html>

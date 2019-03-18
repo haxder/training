@@ -13,6 +13,10 @@
 			<from-outcome>CREATEMOVIE</from-outcome>
 			<to-view-id>/resources/views/createMovie.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>ADDMOCK</from-outcome>
+			<to-view-id>/resources/views/addNew.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/resources/views/createMovie.xhtml</from-view-id>

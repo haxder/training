@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15526288105890" configfile="/training/src/main/webapp/WEB-INF/faces_config_navigation.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="360" y="72" id="pf15526289227471" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15526289227622 pf15526289227623 pf155262925621910" inlinks="pf15526289227625" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="resources/views/movieDetail.xhtml" x="554" y="178" id="pf15526289227626" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15526289227622" path="/resources/views/movieDetail.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="resources/views/createMovie.xhtml" x="122" y="178" id="pf15526289227627" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" outlinks="pf15526289227625" inlinks="pf15526289227623" path="/resources/views/createMovie.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="resources/views/addNew.xhtml" id="pf155262925621911" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf155262925621910" path="/resources/views/addNew.xhtml"/>
+  <links id="pf15526289227622" target="pf15526289227626" source="pf15526289227471" outcome="MOVIEDETAIL"/>
+  <links id="pf15526289227623" target="pf15526289227627" source="pf15526289227471" outcome="CREATEMOVIE"/>
+  <links id="pf15526289227625" target="pf15526289227471" source="pf15526289227627" outcome="INDEX"/>
+  <links id="pf155262925621910" target="pf155262925621911" source="pf15526289227471" outcome="ADDMOCK"/>
+</pageflow:Pageflow>
