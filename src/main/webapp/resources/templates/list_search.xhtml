@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:insert name="header"/>
+<h:body>
+	<div id="menubar">
+		<ui:insert name="menubar">
+			<ui:include src="/resources/templates/menubar.xhtml"/>
+		</ui:insert>
+	</div>
+	<p:spacer height="50px" />
+	<div>
+		<div id="navMenuBar" class="navMenuBar">
+			<ui:insert name="navMenuBar">
+				<ui:include src="/resources/templates/navMenuBar.xhtml"/>
+			</ui:insert>
+		</div>
+		<div id="main" class="main">
+			<!-- searh form -->
+			<ui:insert name="searchForm"/>
+			<p:messages id="messages" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+		
+			<!-- content -->
+			<ui:insert name="content"/>
+		</div>
+	</div>
+</h:body>
+</html>

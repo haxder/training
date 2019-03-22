@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+      >
+    <body>
+	    <ui:composition>
+			<h:form id="megaMenuForm">
+				<p:megaMenu orientation="vertical">
+					<p:menuitem value="マイポータル" />
+					<p:submenu label="決裁">
+						<p:column>
+							<p:submenu label="決裁">
+								<p:menuitem value="決裁一覧" url="#" />
+								<p:menuitem value="特注検討 新規依頼" action="ADDMOCK"/>
+								<p:menuitem value="事前外形図 新規依頼" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="オーダ">
+						<p:column>
+							<p:submenu label="オーダ">
+								<p:menuitem value="オーダ一覧" url="#" />
+								<p:menuitem value="納入仕様書発行 新規依頼	" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="特注設計">
+						<p:column>
+							<p:submenu label="特注設計">
+								<p:menuitem value="受付" url="#" />
+								<p:menuitem value="調要設計" url="#" />
+								<p:menuitem value="調要検索" url="#" />
+								<p:menuitem value="照査" url="#" />
+								<p:menuitem value="承認" url="#" />
+								<p:menuitem value="担当者変更・保留解除" url="#" />
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="SAP連携設定">
+						<p:column>
+							<p:submenu label="SAP連携設定">
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="検索機能">
+						<p:column>
+							<p:submenu label="検索機能">
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="コラボレーション">
+						<p:column>
+							<p:submenu label="コラボレーション">
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+					<p:submenu label="メンテナンス">
+						<p:column>
+							<p:submenu label="メンテナンス">
+							</p:submenu>
+						</p:column>
+					</p:submenu>
+				</p:megaMenu>
+			</h:form>
+	    </ui:composition>
+    </body>
+</html>

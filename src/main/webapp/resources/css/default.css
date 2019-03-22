@@ -6,6 +6,9 @@ body {
 	color: #0e4e7e;
 	margin: auto;
 }
+.main{
+	padding-left: 235px; padding-right: 10px
+}
 .ui-widget-header {
 	background: #aabcc7
 }
@@ -46,5 +49,9 @@ body {
 }
 
 .ui-outputlabel-rfi {
+	color: red;
+}
+
+.ui-datepicker-week-end {
 	color: red;
 }

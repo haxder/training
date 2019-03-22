@@ -1,0 +1,140 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<body>
+		<ui:composition template="/resources/templates/list_search.xhtml">
+			<ui:define name="header">
+				<h:head>
+					<h:outputStylesheet library="css" name="default.css" />
+					<h:outputScript library="scripts" name="jpCalender.js" />
+					<h:outputScript library="primefaces" name="jquery/jquery.js" />
+					<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
+					<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+					<title>特注検討依頼・新規画面</title>
+				</h:head>
+			</ui:define>
+
+			<ui:define name="content">
+				<div id="iraiNaiyo">
+					<p:panel header="依頼内容">
+						<div style="margin-left: 100px; margin-bottom: 30px">
+							<h:form id="addNewForm">
+								<table>
+									<tr>
+										<td><p:outputLabel value="件名" indicateRequired="true"/></td>
+							        	<td><p:inputText id="件名"  required="true"/></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="PMK受付NO" indicateRequired="true"/></td>
+							        	<td><p:inputText id="PMK受付NO" required="true"/></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="納入予定日" /></td>
+							        	<td><p:calendar value="" showOn="both" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="回答希望日" indicateRequired="true"/></td>
+							        	<td><p:calendar value="" showOn="both" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD" required="true"/></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="特急サイン" /></td>
+							        	<td>
+							        		<p:selectOneRadio value="#{testController.select特急サイン}">
+							        			<f:selectItems value="#{testController.特急サイン}" var="c" itemLabel="#{c}" itemValue="#{c}"/>
+							        		</p:selectOneRadio>
+							        	</td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="添付ファイル" /></td>
+							        	<td>
+							        		<p:fileUpload label="参照..." mode="simple" skinSimple="true"/> 
+							        	</td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="分類" /></td>
+							        	<td>
+	  						        		<p:selectOneMenu id="select分類" value="#{testController.select分類}" >
+							        			<f:selectItems value="#{testController.分類}"/>
+									        </p:selectOneMenu>
+							        	</td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="形名" /></td>
+							        	<td><p:inputText id="形名"/></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="依頼内容" indicateRequired="true"/></td>
+							        	<td>
+							        		<p:inputTextarea style="width: 600px; height: 100px"  required="true" autoResize="false"/>
+							        	</td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="台数(0～9999)" /></td>
+							        	<td><p:inputText id="台数"/></td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="参考特注検討依頼NO" /></td>
+							        	<td>
+								        	<p:inputText id="参考特注検討依頼NO1"/>
+								        	<p:inputText id="参考特注検討依頼NO2"/>
+								        	<p:inputText id="参考特注検討依頼NO3"/>
+							        	</td>
+									</tr>
+									<tr>
+										<td><p:outputLabel value="参考調要NO" /></td>
+							        	<td>
+								        	<p:inputText id="参考調要NO1"/>
+								        	<p:inputText id="参考調要NO2"/>
+								        	<p:inputText id="参考調要NO3"/>
+							        	</td>
+									</tr>
+								</table>
+								<div style="float: right;">
+									<p:commandButton value="一時保存" update="addNewForm"/>
+									<p:commandButton value="依頼" update="addNewForm"/>
+								</div>
+							</h:form>
+						</div>
+					</p:panel>
+				</div>
+				<div id="history" >
+					<p:panel header="依頼・回答履歴">
+						<p:dataTable var="history" value="#{testController.historyList}" style="margin-left: 100px" styleClass="myDatatable">
+						    <p:column headerText="日付">
+						        <h:outputText value="#{history.日付}" >
+						        	<f:convertDateTime pattern="yyyy-MM-dd" />
+						        </h:outputText>
+						    </p:column>
+						 
+						    <p:column headerText="イベント">
+						        <h:outputText value="#{history.イベント}" />
+						    </p:column>
+						 
+						    <p:column headerText="実施者">
+						        <h:outputText value="#{history.実施者}" />
+						    </p:column>
+						 
+						    <p:column headerText="部署">
+						        <h:outputText value="#{history.部署}" />
+						    </p:column>
+						    
+						    <p:column headerText="E-MAIL">
+						        <h:outputText value="#{history.email}" />
+						    </p:column>
+						    
+						    <p:column headerText="通知メッセージ">
+						        <h:outputText value="#{history.message}" />
+						    </p:column>
+						</p:dataTable>
+					</p:panel>
+				</div>
+			</ui:define>
+		</ui:composition>
+</body>
+</html>

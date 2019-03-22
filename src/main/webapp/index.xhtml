@@ -4,90 +4,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<h:outputStylesheet library="css" name="default.css" />
-	<h:outputScript library="scripts" name="jquery-1.10.2.js" />
-	<h:outputScript library="scripts" name="jquery-ui.js" />
-	<h:outputScript library="scripts" name="bootstrap.js" />
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>this is Index Page</title>
-</h:head>
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
 <body>
-	<div>
-		<h:form id="menubarForm">
-			<p:menubar id="menubar" styleClass="menuBarClass">
-				<p:menuitem value="ホーム" url="../training" icon="ui-icon-home" />
-				<p:menuitem value="ユーザ情報" icon="ui-icon-gear" />
-				<f:facet name="options">
-					<p:commandButton value="ログアウト" icon="ui-icon-arrowthickstop-1-e" />
-				</f:facet>
-			</p:menubar>
-		</h:form>
-	</div>
-	<p:spacer height="50px" />
-	<div>
-		<div class="navMenuBar">
-			<h:form id="megaMenuForm">
-				<p:megaMenu orientation="vertical">
-					<p:menuitem value="マイポータル" />
-					<p:submenu label="決裁">
-						<p:column>
-							<p:submenu label="決裁">
-								<p:menuitem value="決裁一覧" url="#" />
-								<p:menuitem value="特注検討 新規依頼" action="ADDMOCK"/>
-								<p:menuitem value="事前外形図 新規依頼" url="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-					<p:submenu label="オーダ">
-						<p:column>
-							<p:submenu label="オーダ">
-								<p:menuitem value="オーダ一覧" url="#" />
-								<p:menuitem value="納入仕様書発行 新規依頼	" url="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-					<p:submenu label="特注設計">
-						<p:column>
-							<p:submenu label="特注設計">
-								<p:menuitem value="受付" url="#" />
-								<p:menuitem value="調要設計" url="#" />
-								<p:menuitem value="調要検索" url="#" />
-								<p:menuitem value="照査" url="#" />
-								<p:menuitem value="承認" url="#" />
-								<p:menuitem value="担当者変更・保留解除" url="#" />
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-					<p:submenu label="SAP連携設定">
-						<p:column>
-							<p:submenu label="SAP連携設定">
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-					<p:submenu label="検索機能">
-						<p:column>
-							<p:submenu label="検索機能">
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-					<p:submenu label="コラボレーション">
-						<p:column>
-							<p:submenu label="コラボレーション">
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-					<p:submenu label="メンテナンス">
-						<p:column>
-							<p:submenu label="メンテナンス">
-							</p:submenu>
-						</p:column>
-					</p:submenu>
-				</p:megaMenu>
-			</h:form>
-		</div>
-		<div id="main" style="padding-left: 235px; padding-right: 10px">
+	<ui:composition template="/resources/templates/list_search.xhtml">
+		<ui:define name="header">
+			<h:head>
+				<h:outputStylesheet library="css" name="default.css" />
+				<h:outputScript library="scripts" name="jpCalender.js" />
+				<h:outputScript library="primefaces" name="jquery/jquery.js" />
+				<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" />
+				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+				<title>決裁一覧画面</title>
+			</h:head>
+		</ui:define>
+	
+		<ui:define name="searchForm">
 			<h:form id="searchForm">
 				<p:panel id="toggleable" widgetVar="panel" header="検索エリア"
 					toggleable="true">
@@ -101,9 +35,9 @@
 					    <tr>
 					    	<td><p:outputLabel value="有効期限" /></td>
 					    	<td colspan="3">
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<p:calendar value="" showOn="both" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    		<h:outputText value="　～ 　"/>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<p:calendar value="" showOn="both" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    	</td>
 					    </tr>
 					    <tr>
@@ -117,9 +51,9 @@
 					    <tr>
 					    	<td><p:outputLabel value="特注検討依頼日" /></td>
 					    	<td>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<p:calendar value="" showOn="both" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    		<h:outputText value="　～ 　"/>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<p:calendar value="" showOn="both" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    	</td>
 					    	<td class="td-padding-left-100"><p:outputLabel value="特注検討依頼者" /></td>
 					        <td><p:inputText id="特注検討依頼者" /></td>
@@ -133,9 +67,9 @@
 					    <tr>
 					    	<td><p:outputLabel value="事前外形図依頼日" /></td>
 					    	<td>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<p:calendar value="" showOn="both" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    		<h:outputText value="　～ 　"/>
-					    		<p:calendar value="" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
+					    		<p:calendar value="" showOn="both" pattern="yyyy-MM-dd" locale="ja" placeholder="YYYY-MM-DD"/>
 					    	</td>
 					    	<td class="td-padding-left-100"><p:outputLabel value="事前外形図依頼者" /></td>
 					        <td><p:inputText id="事前外形図依頼者" /></td>
@@ -177,9 +111,9 @@
 					</div>
 				</p:panel>
 			</h:form>
-			<p:messages id="messages" closable="true">
-				<p:autoUpdate />
-			</p:messages>
+		</ui:define>
+	
+		<ui:define name="content">
 			<p:spacer height="30px" />
 			<h:form id="moviesForm">
 				<p:dataList value="#{movieController.movies}" var="mv"
@@ -322,7 +256,8 @@
 					</p:column>
 				</p:dataTable>
 			</h:form>
-		</div>
-	</div>
+		</ui:define>
+	
+	</ui:composition>
 </body>
 </html>
